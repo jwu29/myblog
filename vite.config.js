@@ -14,6 +14,9 @@ export default defineConfig({
     "**/*.svg",
   ],
   optimizeDeps: {
-    include: ["remark-gfm"],
+    include: ["remark-gfm", "remark-parse", "unified"],
+  },
+  ssr: {
+    noExternal: ["remark-gfm", "remark-parse", "unified"],
   },
 });
