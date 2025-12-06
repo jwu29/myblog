@@ -5,7 +5,7 @@ import VideoInfo from "../components/VideoInfo";
 import VideoDescription from "../components/VideoDescription";
 import Comments from "../components/Comments";
 import RecommendedVideos from "../components/RecommendedVideos";
-import Navbar from "../components/NavBar";
+import Navbar from "../components/Navbar";
 
 export default function HomePage() {
   return (
