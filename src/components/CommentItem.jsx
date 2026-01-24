@@ -9,7 +9,17 @@ export default function CommentItem({ comment }) {
           <span className="font-semibold">@{comment.username}</span>
           <span className="text-sm text-gray-400">{comment.timeAgo}</span>
         </div>
-        <p className="text-gray-300">{comment.text}</p>
+        <p className="text-gray-300">
+          {comment.text.split(/(https?:\/\/[^\s]+)/g).map((part, i) =>
+            /^https?:\/\//.test(part) ? (
+              <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
+                {part}
+              </a>
+            ) : (
+              part
+            )
+          )}
+        </p>
       </div>
     </div>
   );

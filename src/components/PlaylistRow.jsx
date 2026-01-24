@@ -5,11 +5,11 @@ import { Play, ChevronRight } from "lucide-react";
 function PlaylistRow({ playlist, videos }) {
   // Get videos that belong to this playlist
   const playlistVideos = videos.filter((video) =>
-    playlist.videos.includes(video.id)
+    playlist.videos.includes(video.id),
   );
 
   const imageFiles = import.meta.glob(
-    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}"
+    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}",
   );
 
   const [imageMap, setImageMap] = useState({});
@@ -27,7 +27,7 @@ function PlaylistRow({ playlist, videos }) {
         const cleanPath = filepath.replace("../data/markdown/", "");
 
         return [cleanPath, mod.default];
-      })
+      }),
     ).then((entries) => {
       setImageMap(Object.fromEntries(entries));
     });
@@ -43,6 +43,7 @@ function PlaylistRow({ playlist, videos }) {
             {playlist.videoCount} articles
           </span>
         </div>
+        {/*
         <Link
           to={`/playlist/${playlist.id}`}
           className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition"
@@ -50,6 +51,7 @@ function PlaylistRow({ playlist, videos }) {
           View all
           <ChevronRight className="w-4 h-4" />
         </Link>
+        */}
       </div>
 
       {/* Videos in horizontal scroll */}
@@ -101,17 +103,15 @@ function PlaylistRow({ playlist, videos }) {
                     }}
                   />
                 </div>
-                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-xs rounded">
+                <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-xs text-white rounded">
                   {video.duration}
                 </div>
               </div>
-              <h3 className="font-semibold text-sm line-clamp-2 mb-1 group-hover:text-blue-400 transition">
+              <h3 className="font-semibold text-sm text-blue-200 line-clamp-2 mb-1 group-hover:text-blue-400 transition">
                 {video.title}
               </h3>
               <p className="text-xs text-gray-400">{video.channel}</p>
-              <p className="text-xs text-gray-400">
-                {video.views} views • {video.uploaded}
-              </p>
+              <p className="text-xs text-gray-400">{video.uploaded}</p>
             </Link>
           ))}
         </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function RecommendedVideoItem({ video }) {
   const imageFiles = import.meta.glob(
-    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}"
+    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}",
   );
 
   const [imageMap, setImageMap] = useState({});
@@ -22,7 +22,7 @@ export default function RecommendedVideoItem({ video }) {
         const cleanPath = filepath.replace("../data/markdown/", "");
 
         return [cleanPath, mod.default];
-      })
+      }),
     ).then((entries) => {
       setImageMap(Object.fromEntries(entries));
     });
@@ -74,12 +74,12 @@ export default function RecommendedVideoItem({ video }) {
               }}
             />
           </div>
-          <div className="absolute bottom-1 right-1 bg-black/80 px-1 text-xs rounded">
+          <div className="absolute bottom-1 right-1 bg-black/80 px-1 text-xs text-gray-400 rounded">
             {video.duration}
           </div>
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-sm line-clamp-2 mb-1">
+          <h3 className="font-semibold text-sm text-blue-100 line-clamp-2 mb-1">
             {video.title}
           </h3>
           <p className="text-xs text-gray-400">{video.channel}</p>

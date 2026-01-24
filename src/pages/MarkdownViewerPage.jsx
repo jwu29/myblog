@@ -29,15 +29,6 @@ export default function MarkdownViewerPage() {
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
 
-  const folder = document.markdownFolder;
-  const mdfile = document.markdownFile;
-
-  const markdownFiles = import.meta.glob(`../data/markdown/**/content.md`);
-  const imageFiles = import.meta.glob(
-    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}"
-  );
-  const [imageMap, setImageMap] = useState({});
-
   useEffect(() => {
     if (!document) {
       setError("Document not found");
@@ -45,12 +36,21 @@ export default function MarkdownViewerPage() {
       return;
     }
 
+    const folder = document.markdownFolder;
+    const mdfile = document.markdownFile;
+
+    const markdownFiles = import.meta.glob(`../data/markdown/**/content.md`);
+    const imageFiles = import.meta.glob(
+      "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}",
+    );
+    const [imageMap, setImageMap] = useState({});
+
     // Preload all image URLs
     Promise.all(
       Object.entries(imageFiles).map(async ([path, resolver]) => {
         const mod = await resolver();
         return [path.replace("../data/markdown/", ""), mod.default];
-      })
+      }),
     ).then((entries) => {
       setImageMap(Object.fromEntries(entries));
     });
@@ -112,10 +112,10 @@ export default function MarkdownViewerPage() {
         <Navbar />
         <div className="max-w-7xl mx-auto p-4">
           <div className="text-center py-12">
-            <h1 className="text-3xl font-bold mb-4">Document Not Found</h1>
+            <h1 className="text-3xl font-bold mb-4">Paranoid Android</h1>
             <p className="text-gray-400 mb-6">{error}</p>
             <Link to="/" className="text-blue-400 hover:text-blue-300">
-              Go back to home
+              Return to home
             </Link>
           </div>
         </div>
@@ -254,7 +254,7 @@ export default function MarkdownViewerPage() {
                           } else {
                             console.warn(
                               "Image not found in imageMap:",
-                              relativePath
+                              relativePath,
                             );
                           }
                         }

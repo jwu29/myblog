@@ -13,7 +13,7 @@ export default function AboutMeArticles() {
 
   // Get all videos for this channel (not in playlists)
   const allChannelVideos = ArticlesInfo.articles.filter(
-    (articles) => articles.channelId === id
+    (articles) => articles.channelId === id,
   );
 
   // Get video IDs that are in playlists
@@ -21,11 +21,11 @@ export default function AboutMeArticles() {
 
   // Get videos NOT in any playlist (standalone videos)
   const standaloneVideos = allChannelVideos.filter(
-    (articles) => !videosInPlaylists.includes(articles.id)
+    (articles) => !videosInPlaylists.includes(articles.id),
   );
 
   const imageFiles = import.meta.glob(
-    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}"
+    "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}",
   );
 
   const [imageMap, setImageMap] = useState({});
@@ -42,7 +42,7 @@ export default function AboutMeArticles() {
         const cleanPath = filepath.replace("../data/markdown/", "");
 
         return [cleanPath, mod.default];
-      })
+      }),
     ).then((entries) => {
       setImageMap(Object.fromEntries(entries));
     });
@@ -86,16 +86,16 @@ export default function AboutMeArticles() {
                       ]
                     }
                     alt={video.title}
-                    className="w-full h-full object-cover group-hover:opacity-80 transition"
+                    className="w-full h-full text-white object-cover group-hover:opacity-80 transition"
                   />
                   <div className="absolute inset-0 flex items-center justify-center group-hover:bg-black/20 transition">
                     <Play className="w-12 h-12 text-white/80" />
                   </div>
-                  <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-xs rounded">
+                  <div className="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-xs text-white/80 rounded">
                     {video.duration}
                   </div>
                 </div>
-                <h3 className="font-semibold text-sm line-clamp-2 mb-1 group-hover:text-blue-400 transition">
+                <h3 className="font-semibold text-sm text-gray-400 line-clamp-2 mb-1 group-hover:text-white-400 transition">
                   {video.title}
                 </h3>
                 <p className="text-xs text-gray-400">
