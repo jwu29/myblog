@@ -6,7 +6,7 @@ const mockComments = [
     id: 1,
     username: "Pick Ashley",
     timeAgo: "2 years ago",
-    text: "Happy New Year! https://www.youtube.com/watch?v=XGxIE1hr0w4",
+    text: "More information can be found here! https://www.youtube.com/watch?v=XGxIE1hr0w4",
   },
 ];
 

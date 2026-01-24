@@ -28,6 +28,7 @@ export default function MarkdownViewerPage() {
   const [dislikes, setDislikes] = useState(document?.dislikes || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
+  const [imageMap, setImageMap] = useState({});
 
   useEffect(() => {
     if (!document) {
@@ -39,11 +40,10 @@ export default function MarkdownViewerPage() {
     const folder = document.markdownFolder;
     const mdfile = document.markdownFile;
 
-    const markdownFiles = import.meta.glob(`../data/markdown/**/content.md`);
+    const markdownFiles = import.meta.glob("../data/markdown/**/content.md");
     const imageFiles = import.meta.glob(
       "../data/markdown/**/images/*.{png,jpg,jpeg,gif,svg}",
     );
-    const [imageMap, setImageMap] = useState({});
 
     // Preload all image URLs
     Promise.all(
@@ -165,8 +165,6 @@ export default function MarkdownViewerPage() {
                         className="inline-block font-semibold relative cursor-pointer after:content-[''] after:absolute after:left-0 after:-bottom-0.5 
               after:h-[1px] after:w-0 after:bg-white hover:after:w-full"
                         onClick={() => navigate("/about-me/")}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
                       >
                         Josiah Wu
                       </div>
