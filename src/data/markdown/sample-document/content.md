@@ -3,6 +3,7 @@
 ## Introduction
 
 React is a **powerful JavaScript library** for building user interfaces.
+
 ### Lol
 
 ![React Logo](./images/diagram.jpg)
@@ -23,23 +24,26 @@ Below is a screenshot of a sample component:
 
 To get started with React, you need Node.js installed. Then run:
 
-    bash
-    npx create-react-app my-app
-    cd my-app
-    npm start
+```
+bash
+npx create-react-app my-app
+cd my-app
+npm start
+```
 
 ## Your First Component
 
 Here's a simple React component:
 
-    import React from 'react';
+```
+import React from 'react';
 
-    function Welcome(props) {
-      return <h1>Hello, {props.name}!</h1>;
-    }
+function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
 
-    export default Welcome;
-
+export default Welcome;
+```
 
 The result looks like this:
 
