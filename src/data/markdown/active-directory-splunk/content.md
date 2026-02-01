@@ -18,7 +18,7 @@ The main steps used for this project are:
 1.  Set up the virtual machines; Splunk Server on Ubuntu, Kali Linux, Window 10 hosts and Windows 2022 server.
 2.  Install Splunk Universal Forwarder on the host machines and on the Windows 2022 server.
 3.  Install Active Directory on Windows 2022 Server, create a domain, then and allow host to join the domain.
-4.  Simulate a brute-force attack from Kali Linux machine to hosts, and check whether Splunk Server has detected the attack.
+4.  Simulate brute-force attacks from Kali Linux machine to hosts, and check whether Splunk Server has detected the attack.
 5.  Simulate different attacks in the hosts using the Atomic Red Team tool, then check whether Splunk Server has recorded them.
 
 ---
@@ -75,57 +75,158 @@ The Splunk Server is now activated on the network; any device on the network can
 
 ## Step 2 - Installing Splunk Universal Forwarder
 
-We now need to install Splunk Universal Forwarder and Sysmon in both `ADDC_Server` and the host machines. Splunk Universal Forwarder is
+We now need to install Splunk Universal Forwarder and Sysmon in both `ADDC_Server` and the host machines. Sysmon is a Windows SysInternals tool that provides detailed logging of system activities; Splunk Universal Forwarder is responsible for delivering them to the Splunk server.
 
-### Resolution
+We first configure `ADDC_Server`, `Mgmt-PC` and `IT-PC` with their corresponding IPv4 addresses.
 
-To resolve the error with my security token, I attached the EC2 instance with an IAM role containing the IAM policy authorizing access to CodeArtifact. This resolved the error because now the instance has authority to do so.
+![]()
 
-It's a security best practice to use IAM roles because when applications are running on the instance, we can automatically use these temporary credentials to make AWS API calls without having to handle credential management.
+We can then verify the IP configuration through the command `ipconfig all` on Command Prompt. Next, we will change the PC name on each device.
+
+![]()
+![]()
+
+After configuration, the device would be able to connect to the Splunk instance, as it is now a host inside our virtual network.
+
+Moreover, we install the Splunk Universal Forwarder from the Splunk website on each VM.
+
+![]()
+![]()
+
+Also, we install Sysmon from [Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon). In addition, the installation will be carried out according to the config file `sysmonconfig.xml`, which specifies what events to log or ignore. This configuration file is provided in the courtesy of `olafhartong` on [GitHub](https://github.com/olafhartong/sysmon-modular).
+
+![]()
+![]()
+![]()
+
+We then control what Splunk Forwarder sends to its server by customizing `inputs.conf` in the folder `C:\Program Files\SplunkUniversal Forwarder`. Below is the configuration for `inputs.conf`, which declares what Windows Event Logs to collect and forward to Splunk Server.
+
+```
+[WinEventLog://Application]
+index = endpoint
+disabled = false
+
+[WinEventLog://Security]
+index = endpoint
+disabled = false
+
+[WinEventLog://System]
+index = endpoint
+disabled = false
+
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+index = endpoint
+disabled = false
+renderXml = true
+source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
+```
+
+![]()
+
+However, this configuration would not be applied until we restart the Splunk Forwarder on `services.msc` through running as administrator. I also changed the "Log On" permissions to local to allow for authorised log collection.
+
+Finally, we can open Splunk on our browser and log in; we then create an index named "endpoint", which corresponds to the index name in the above `inputs.conf` file. We then configure port 9997 as the receiving port.
+
+![]()
+
+![]()
+
+![]()
+
+Finally, when we filter for `index="endpoint"` in our search, we will find a long list of logs generated from our hosts and Active Directory server.
+
+![]()
+
+![]()
 
 ---
 
 ## Step 3 - Install Active Directory on Windows 2022 Server and create a domain
 
-The JSON policy I set up, for all resources:
+On `ADDC_Server`, we open the Server Manager, then click on Manage > Next > Role-based > Add Active Directory Domain services. This will create our domain.
 
-- allows getting an authorization token for CodeArtifact.
-- allows retrieving the endpoint for a CodeArtifact repository
-- allows reading packages from a CodeArtifact repository.
-- allows calling the GetServiceBearerToken action from the AWS Security Token Service (STS)
+![]()
+
+We then name our domain `SO-LAN`, and promote `ADDC_Server` as the Domain Controller. We then add the domain to a new forest with the root domain name of `SO-LAN.local`.
+
+![]()
+
+After configuring the password, leave everything as it is, then click Install. The computer will be restarted. The login screen shows `SO-LAN\Administrator`, which means `ADDC-Server` has been succesfully registered into the domain!
+
+![]()
+
+Let's log back into the Server Manager console, and create our users for the host machines `Mgmt-PC` and `IT-PC`. We would like to do this because we can perform authorization by preventing cross-department access. (e.g. an user from IT cannot log in to Management PCs).
+
+Here is a table of the users of this network. (The names in the below table are fictional and do not reflect real persons' or organisations' names).
+
+| Name       | Username | Department | PC Access |
+| ---------- | -------- | ---------- | --------- |
+| Eva Woods  | `ewoods` | Management | `Mgmt-PC` |
+| John Smith | `jsmith` | IT         | `IT-PC`   |
+
+We first create an Organizational Unit (OU) for each department:
+
+![]()
+
+Then create users in each department.
+
+![]()
+
+P.S. we should check the password requirements when creating our passwords.
+
+![]()
+
+When users are created, we then restrict each user to only access PCs of their respective departments.
+
+Finally, we make each host machine join the newly created `SO-LAN` domain. In particular, we need to change the preferred DNS server to the Domain Controller `192.168.174.7`, as this will allow the host machines to contact the Domain Controller.
+
+Search PC > Properties > Advanced System Settings > Computer Name > "To rename this computer or change it domain or workgroup..."
+
+After restarting the computer, we see that we can only login through a user.
+
+![]()
+
+We can try to log in with user credentials of the wrong department; the login is unsuccessful. In fact, one can only login by typing the credentials of a user in the matching department.
+
+![]()
 
 ---
 
-## Step 4 - Simulate a brute-force dictionary attack
+## Step 4 - Simulating brute-force attacks
 
-### To test the connection between Maven and CodeArtifact, I compiled my web app using settings.xml
+We can now finally simulate an adversarial attack using Kali Linux. In this part, we will simluate brute-force attacks using Hydra, a penetration testing tool to test password security. Specfically, we are conducting dictionary attacks on RDP and SMB.
 
-The settings.xml file configures Maven to add lists of servers, profiles and mirrors needed to set up the connection with CodeArtifact. Together, the code snippets define repository URLs, authentication details, and other settings so that Maven knows how to connect with CodeArtifact to fetch and store your project's dependencies.
+![]()
 
-Compiling means translating your project's code into a language that computers can understand and run.
+After making Kali Linux join the network, we need to retrieve a password list file. This is readily available in Kali Linux - `rockyou.txt.gz` in the folder `/usr/share/wordlists`.
+
+![]()
+
+We need to unzip `rockyou.txt.gz` and store the first few passwords into a new file called `passwords.txt`.
+
+![]()
+
+To simulate our attack, we need to enable Remote Desktop Protocol (RDP) in our host machines. This is achieved by This PC > Properties > Related Systems > Advanced System Settings > Remote Tab > Allow Remote Conncetions this computer. We need to allow connections from our office users - in this case, `jsmith` and `ewoods`.
+
+![]()
+
+![]()
+
+Once RDP is activated, we can now launch a dictionary attack from Kali Linux using Hydra:
+
+![]()
+
+The attack is successful. Now if we go back to Splunk, we can see the failed logon attempts (Event Code of 4625) and the one succesful attempt.
+
+![]()
+
+![]()
 
 ---
 
-## Step 5 - Simulate different attacks
+## Step 5 - Simulate different attacks through Atomic RedTeam
 
-After compiling, I checked my `nextwork-devops-cicd` repo. I noticed that all the packages I need are neatly stored in CodeArtifatct.
-
----
-
-## Uploading My Own Packages
-
-- Create your own custom package
-- Publish it directly to your CodeArtifact repository
-- Experience the full package lifecycle by downloading your own package
-- Showcase advanced package management skills in your documentation!
-
-To create my own package, I converted a text file into a tar.gz file. I also generated a security hash because it is required to verify its integrity.
-
-To publish the package, I used the AWS CLI command `aws codeartifact publish-package-version`. When I look at the package details in CodeArtifact, I can see the new package being installed.
-
-To validate my packages, I then decompressed the tar.gz file using the command `tar -xzvf secret-mission.tar.gz`. I then saw my original secret message!
-
-![Image](http://learn.nextwork.org/motivated_indigo_zealous_griffin/uploads/aws-devops-codeartifact-updated_sm12-upload)
+Atomic Red Team is an open-source tool which is heavily utilised for security testing and simulating adverary tactics in accordance to the MITRE ATT&CK framework. It contains a library of small focused tests (known as "atomic tests") that mimic real-work attack techniques, allowing security teams to quickly evaluate their defense systems.
 
 ---
 
