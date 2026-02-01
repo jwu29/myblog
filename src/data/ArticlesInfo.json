@@ -29,15 +29,18 @@
       "markdownFile": "content"
     },
     {
-      "id": 3,
-      "title": "Coming Soon",
+      "id": "active-directory-splunk",
+      "title": "Small Office LAN Network Simulation with Active Directory (Part 1: Splunk Server)",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "views": "1.2M",
       "uploaded": "2 days ago",
       "duration": "? min",
-      "description": "Discover the best travel destinations for 2024.",
-      "thumbnailColor": "from-orange-600 to-pink-600"
+      "description": "Home Lab",
+      "thumbnailColor": "from-orange-600 to-pink-600",
+      "thumbnailImage": "Splunk-Project-Diagram.png",
+      "markdownFolder": "active-directory-splunk",
+      "markdownFile": "content"
     },
     {
       "id": 4,
@@ -101,21 +104,21 @@
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
       "videoCount": 3,
-      "videos": ["sample-document", "aws-code-artifact", 3]
+      "videos": ["sample-document", "aws-code-artifact"]
     },
     {
       "id": 2,
-      "name": "Cloud Technology & Security",
+      "name": "Cloud Technology",
       "channelId": "testing",
       "videoCount": 1,
       "videos": [4]
     },
     {
       "id": 3,
-      "name": "Cybersecurity",
+      "name": "System Administration & Security",
       "channelId": "testing",
       "videoCount": 3,
-      "videos": [5, 6, 7]
+      "videos": ["active-directory-splunk", 6, 7]
     },
     {
       "id": 4,

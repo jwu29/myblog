@@ -1,10 +1,6 @@
-# Mini Office LAN Network with Active Directory & Splunk Server (Part 1)
+# Small Office LAN Network Simulation with Active Directory (Part 1: Splunk Server)
 
-**Author:** Josiah Wu
-
----
-
----
+## **Author:** Josiah Wu
 
 ## About
 
@@ -77,11 +73,9 @@ Finally, we will redirect to the `bin` directory of splunk and start Splunk.
 
 The Splunk Server is now activated on the network; any device on the network can now connect to Splunk through the address `192.168.174.10:8000`.
 
-### ADDC_Server
-
 ## Step 2 - Installing Splunk Universal Forwarder
 
-Splunk Universal Forwarder
+We now need to install Splunk Universal Forwarder and Sysmon in both `ADDC_Server` and the host machines. Splunk Universal Forwarder is
 
 ### Resolution
 
