@@ -169,16 +169,19 @@ export default function MarkdownViewerPage() {
                         Josiah Wu
                       </div>
                       <div className="text-sm text-gray-400">
-                        50K subscribers
+                        Student | IT Enthusiast
                       </div>
                     </div>
                   </div>
+                  {/*
                   <button className="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
                     Subscribe
                   </button>
+                  */}
                 </div>
 
                 <div className="flex items-center gap-2 flex-wrap">
+                  {/*
                   <button
                     onClick={handleLike}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full transition ${
@@ -192,6 +195,8 @@ export default function MarkdownViewerPage() {
                       fill={isLiked ? "currentColor" : "none"}
                     />
                   </button>
+                  */}
+                  {/*
                   <button
                     onClick={handleDislike}
                     className={`flex items-center gap-2 px-4 py-2 rounded-full transition ${
@@ -205,6 +210,7 @@ export default function MarkdownViewerPage() {
                       fill={isDisliked ? "currentColor" : "none"}
                     />
                   </button>
+                  */}
                   {/*
                   <button className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 px-4 py-2 rounded-full transition">
                     <Share2 className="w-5 h-5" />
@@ -221,8 +227,10 @@ export default function MarkdownViewerPage() {
             {/* Description */}
             <div className="bg-zinc-900 rounded-xl p-4 mb-4">
               <div className="flex items-center gap-4 mb-2 text-sm">
-                <span className="font-semibold">{document.views} views</span>
-                <span className="text-gray-400">{document.uploaded}</span>
+                <span className="font-semibold">{document.topic}</span>
+                <span className="text-gray-400">
+                  Last updated by {document.uploaded}
+                </span>
               </div>
               <p className="text-gray-300">{document.description}</p>
             </div>

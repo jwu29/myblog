@@ -1,8 +1,6 @@
 # Small Office LAN Network Simulation with Active Directory (Part 1: Splunk Server)
 
-## **Author:** Josiah Wu
-
-## About
+## Introduction
 
 In this project, I have constructed a mini Office LAN network using VMWare virtual machines, including:
 
@@ -155,7 +153,7 @@ After configuring the password, leave everything as it is, then click Install. T
 
 ![]()
 
-Let's log back into the Server Manager console, and create our users for the host machines `Mgmt-PC` and `IT-PC`. We would like to do this because we can perform authorization by preventing cross-department access. (e.g. an user from IT cannot log in to Management PCs).
+Let's log back into the Server Manager console, and create our users for the host machines `Mgmt-PC` and `IT-PC`. We would like to do this because we can configure access control by preventing cross-department access. (e.g. an user from IT cannot log in to Management PCs).
 
 Here is a table of the users of this network. (The names in the below table are fictional and do not reflect real persons' or organisations' names).
 
@@ -228,6 +226,38 @@ The attack is successful. Now if we go back to Splunk, we can see the failed log
 
 Atomic Red Team is an open-source tool which is heavily utilised for security testing and simulating adverary tactics in accordance to the MITRE ATT&CK framework. It contains a library of small focused tests (known as "atomic tests") that mimic real-work attack techniques, allowing security teams to quickly evaluate their defense systems.
 
----
+Firstly, we type the command `Set-ExecutionPolicy Bypass CurrentUser` to allow unrestricted execution of PowerShell scripts for the current user.
+
+![]()
+
+We then implement an exclusion for the C:\ Drive, so that Windows Defender won't automatically remove files from Atomic Red Team as it may be detected as a source of threat.
+
+![]()
+
+We now can install Atomic Red Team.
+
+![]()
+
+There are a lot of MITRE ATT&CK techniques available for testing in Atomic Red Team. In this part, we have chosen T1136.001, which is Account Creation (Local Account). This script creates a new user named `NewLocalUser` and deletes it immediately afterwards.
+
+Let's see if Splunk can detect this attack. Here, we search for `index="endpoint" NewLocalUser`.
+
+![]()
+
+Nice. Now we can try T1059.001, Command and Scripting Interpreter for Powershell.
+
+On Splunk, if we serach `powershell bypass`, we can find the corresponding event after executing the command.
+
+## Conclusion
+
+In this project, we successfully built a small office LAN environment that demonstrates fundamental enterprise security monitoring concepts. By integrating Splunk with Active Directory, we created a realistic network where it contains the following security features:
+
+- **Centralised logging** was achieved through Splunk Universal Forwarder and Sysmon, enabling visibility into Windows Event Logs across all domain-joined machines.
+- **Access control** was enforced via Active Directory, restricting users to their department-specific workstations.
+- **Attack detection** was validated by simulating brute-force attacks with Hydra and adversary techniques with Atomic Red Team, both of which were captured and visible in Splunk.
+
+This setup also emphasises the importance of SIEM platforms in detecting malicious activity. The failed logon attempts (Event Code 4625) from the Hydra attack and the suspicious account creation from Atomic Red Team were all recorded, demonstrating how security teams can use such logs to identify and respond to threats.
+
+In Part 2, we will expand on this foundation by exploring security features available on Active Directory, and how to enhance scalability using Group Policies and Shared Resources.
 
 ---
