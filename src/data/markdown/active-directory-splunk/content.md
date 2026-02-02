@@ -77,25 +77,28 @@ We now need to install Splunk Universal Forwarder and Sysmon in both `ADDC_Serve
 
 We first configure `ADDC_Server`, `Mgmt-PC` and `IT-PC` with their corresponding IPv4 addresses.
 
-![]()
+![ADDC-IP-settings](./images/addc-server-ip-config.png)
+_Configure IPv4 address on ADDC_Server_
 
 We can then verify the IP configuration through the command `ipconfig all` on Command Prompt. Next, we will change the PC name on each device.
 
-![]()
-![]()
+![ADDC-ipconfig](./images/addc-server-ipconfig.png)
 
 After configuration, the device would be able to connect to the Splunk instance, as it is now a host inside our virtual network.
 
 Moreover, we install the Splunk Universal Forwarder from the Splunk website on each VM.
 
-![]()
-![]()
+![Splunk-Univ-Forwarder](./images/splunk-universal-forwarder.png)
+![Splunk-Univ-Forwarder2](./images/splunk-universal-forwarder-02.png)
+![Splunk-Univ-Forwarder3](./images/splunk-universal-forwarder-04.png)
 
 Also, we install Sysmon from [Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon). In addition, the installation will be carried out according to the config file `sysmonconfig.xml`, which specifies what events to log or ignore. This configuration file is provided in the courtesy of `olafhartong` on [GitHub](https://github.com/olafhartong/sysmon-modular).
 
-![]()
-![]()
-![]()
+![Sysmon-Page](./images/sysmon-page.png)
+
+![Sysmon-Config](./images/sysmon-config-page.png)
+
+![Sysmon-Download](./images/mgmt-pc-sysmon-download.png)
 
 We then control what Splunk Forwarder sends to its server by customizing `inputs.conf` in the folder `C:\Program Files\SplunkUniversal Forwarder`. Below is the configuration for `inputs.conf`, which declares what Windows Event Logs to collect and forward to Splunk Server.
 
@@ -119,23 +122,27 @@ renderXml = true
 source = XmlWinEventLog:Microsoft-Windows-Sysmon/Operational
 ```
 
-![]()
+![Service-Restart](./images/mgmt-pc-services.png)
 
 However, this configuration would not be applied until we restart the Splunk Forwarder on `services.msc` through running as administrator. I also changed the "Log On" permissions to local to allow for authorised log collection.
 
 Finally, we can open Splunk on our browser and log in; we then create an index named "endpoint", which corresponds to the index name in the above `inputs.conf` file. We then configure port 9997 as the receiving port.
 
-![]()
+![Splunk-Login-Page](./images/mgmt-pc-splunk-login.png)
 
-![]()
+![Splunk-Index-Tab](./images/mgmt-pc-splunk-settings.png)
 
-![]()
+![Splunk-Add-Index](./images/mgmt-pc-splunk-add-new-index.png)
+
+![Splunk-Add-Listening-Port](./images/mgmt-pc-splunk-add-listening-port.png)
+
+![Splunk-Listening-Port-Settings](./images/mgmt-pc-splunk-receive-port-settings.png)
+
+![Splunk-Forward-Receive](./images/mgmt-pc-splunk-receive-port.png)
 
 Finally, when we filter for `index="endpoint"` in our search, we will find a long list of logs generated from our hosts and Active Directory server.
 
-![]()
-
-![]()
+![Splunk-Endpoint-Search](./images/mgmt-pc-splunk-index-endpoint-search.png)
 
 ---
 
@@ -143,15 +150,17 @@ Finally, when we filter for `index="endpoint"` in our search, we will find a lon
 
 On `ADDC_Server`, we open the Server Manager, then click on Manage > Next > Role-based > Add Active Directory Domain services. This will create our domain.
 
-![]()
+![ADDC-Add-AD-Services](./images/addc-server-add-roles-and-features.png)
 
 We then name our domain `SO-LAN`, and promote `ADDC_Server` as the Domain Controller. We then add the domain to a new forest with the root domain name of `SO-LAN.local`.
 
-![]()
+![ADDC-Add-DC](./images/addc-server-new-forest.png)
+
+![ADDC-Add-DC-Summary](./images/addc-server-new-forest-summary.png)
 
 After configuring the password, leave everything as it is, then click Install. The computer will be restarted. The login screen shows `SO-LAN\Administrator`, which means `ADDC-Server` has been succesfully registered into the domain!
 
-![]()
+![ADDC-New-Login](./images/addc-server-new-login.png)
 
 Let's log back into the Server Manager console, and create our users for the host machines `Mgmt-PC` and `IT-PC`. We would like to do this because we can configure access control by preventing cross-department access. (e.g. an user from IT cannot log in to Management PCs).
 
@@ -162,31 +171,51 @@ Here is a table of the users of this network. (The names in the below table are 
 | Eva Woods  | `ewoods` | Management | `Mgmt-PC` |
 | John Smith | `jsmith` | IT         | `IT-PC`   |
 
-We first create an Organizational Unit (OU) for each department:
+We first create an Organizational Unit (OU) for each department.
 
-![]()
+![ADDC-OU-List](./images/addc-server-domain-ou-list.png)
 
-Then create users in each department.
+Then create users in each department's OU.
 
-![]()
+![ADDC-Management-OU](./images/ADDC-Management-Users.png)
+_List of users in Management Department_
 
-P.S. we should check the password requirements when creating our passwords.
+![ADDC-IT-OU](./images/ADDC-IT-Users.png)
+_List of users in Management Department_
 
-![]()
+P.S. we should check the password requirements when creating our passwords. This can be found on `rsop.msc` > Computer Configuration > Policies > Windows Settings > Security Settings > Password Policy
 
-When users are created, we then restrict each user to only access PCs of their respective departments.
+![ADDC-Password-Policy-Brief](./images/addc-server-password-policy-brief.png)
+
+![ADDC-Password-Policy-Detailed](./images/addc-server-password-policy-detailed.png)
+
+After configuring passwords for each user, we then restrict each user to only access PCs of their respective departments.
+
+![SOLAN-Restrict-Mgmt](./images/solan-restrict-mgmt-pc-login.png)
+
+![SOLAN-Restrict-IT](./images/solan-restrict-it-pc-login.png)
 
 Finally, we make each host machine join the newly created `SO-LAN` domain. In particular, we need to change the preferred DNS server to the Domain Controller `192.168.174.7`, as this will allow the host machines to contact the Domain Controller.
 
+![Mgmt-DNS-Config](./images/mgmt-pc-dns-config.png)
+
 Search PC > Properties > Advanced System Settings > Computer Name > "To rename this computer or change it domain or workgroup..."
+
+![Mgmt-Join-Domain](./images/mgmt-pc-join-domain-page2.png)
+
+![Mgmt-Join-Success](./images/mgmt-pc-join-domain-success.png)
 
 After restarting the computer, we see that we can only login through a user.
 
-![]()
+![Mgmt-New-Login](./images/mgmt-pc-new-login.png)
 
 We can try to log in with user credentials of the wrong department; the login is unsuccessful. In fact, one can only login by typing the credentials of a user in the matching department.
 
-![]()
+![Login-Blocked](./images/Login-Blocked.png)
+
+Only when we type the correct credentials, we can log back in.
+
+![Mgmt-User-Login](./images/mgmt-pc-ewoods-login.png)
 
 ---
 
@@ -194,31 +223,30 @@ We can try to log in with user credentials of the wrong department; the login is
 
 We can now finally simulate an adversarial attack using Kali Linux. In this part, we will simluate brute-force attacks using Hydra, a penetration testing tool to test password security. Specfically, we are conducting dictionary attacks on RDP and SMB.
 
-![]()
+But before all this, we need to first make Kali Linux join the network.
 
-After making Kali Linux join the network, we need to retrieve a password list file. This is readily available in Kali Linux - `rockyou.txt.gz` in the folder `/usr/share/wordlists`.
+![kali-ip-settings](./images/kali-ip-settings.png)
 
-![]()
+![kali-ip-address](./images/kali-ip-address.png)
 
-We need to unzip `rockyou.txt.gz` and store the first few passwords into a new file called `passwords.txt`.
+After that, we need to retrieve a password list file. This is readily available in Kali Linux - `rockyou.txt.gz` in the folder `/usr/share/wordlists`.
+We have unzipped `rockyou.txt.gz` and store the first few passwords into a new file called `passwords.txt`.
 
-![]()
+![kali-passwords-txt](./images/kali-passwords-txt.png)
 
-To simulate our attack, we need to enable Remote Desktop Protocol (RDP) in our host machines. This is achieved by This PC > Properties > Related Systems > Advanced System Settings > Remote Tab > Allow Remote Conncetions this computer. We need to allow connections from our office users - in this case, `jsmith` and `ewoods`.
+To simulate our attack, we need to enable Remote Desktop Protocol (RDP) in our host machines. This is achieved by This PC > Properties > Related Systems > Advanced System Settings > Remote Tab > Allow Remote Conncetions this computer. We need to allow connections from our office users.
 
-![]()
-
-![]()
+![solan-allow-remote-connection](./images/solan-allow-remote-connection.png)
 
 Once RDP is activated, we can now launch a dictionary attack from Kali Linux using Hydra:
 
-![]()
+![kali-dict-attack](./images/kali-passwords-dictionary-attack.png)
 
-The attack is successful. Now if we go back to Splunk, we can see the failed logon attempts (Event Code of 4625) and the one succesful attempt.
+The attack is successful. Now if we go back to Splunk, we can see there is a successfull log-on attempt by Kali Linux.
 
-![]()
+![splunk-event-codes](./images/splunk-event-codes.png)
 
-![]()
+![splunk-attack-source](./images/splunk-attack-source.png)
 
 ---
 
@@ -228,35 +256,41 @@ Atomic Red Team is an open-source tool which is heavily utilised for security te
 
 Firstly, we type the command `Set-ExecutionPolicy Bypass CurrentUser` to allow unrestricted execution of PowerShell scripts for the current user.
 
-![]()
+![powershell-bypass](./images/powershell-turn-off-warnings.png)
 
 We then implement an exclusion for the C:\ Drive, so that Windows Defender won't automatically remove files from Atomic Red Team as it may be detected as a source of threat.
 
-![]()
+![cdrive-exclusion](./images/folder-exclusion.png)
 
 We now can install Atomic Red Team.
 
-![]()
+![install-atomic-red-team](./images/powershell-install-atomic-redteam.png)
 
-There are a lot of MITRE ATT&CK techniques available for testing in Atomic Red Team. In this part, we have chosen T1136.001, which is Account Creation (Local Account). This script creates a new user named `NewLocalUser` and deletes it immediately afterwards.
+There is a large range of MITRE ATT&CK techniques available for testing in Atomic Red Team. In this part, we have chosen T1136.001, which is Account Creation (Local Account). This script creates a new user named `NewLocalUser` and deletes it immediately afterwards.
 
 Let's see if Splunk can detect this attack. Here, we search for `index="endpoint" NewLocalUser`.
 
-![]()
+![splunk-newlocaluser](./images/splunk-endpoint-newlocaluser-search.png)
 
-Nice. Now we can try T1059.001, Command and Scripting Interpreter for Powershell.
+![splunk-newlocaluser2](./images/splunk-endpoint-newlocaluser-search2.png)
+
+Nice. Now we can try T1059, Command and Scripting Interpreter for Powershell.
 
 On Splunk, if we serach `powershell bypass`, we can find the corresponding event after executing the command.
+
+![splunk-t1059](./images/splunk-t1059-search-result.png)
+
+---
 
 ## Conclusion
 
 In this project, we successfully built a small office LAN environment that demonstrates fundamental enterprise security monitoring concepts. By integrating Splunk with Active Directory, we created a realistic network where it contains the following security features:
 
-- **Centralised logging** was achieved through Splunk Universal Forwarder and Sysmon, enabling visibility into Windows Event Logs across all domain-joined machines.
-- **Access control** was enforced via Active Directory, restricting users to their department-specific workstations.
-- **Attack detection** was validated by simulating brute-force attacks with Hydra and adversary techniques with Atomic Red Team, both of which were captured and visible in Splunk.
+- **Centralised Logging** was achieved through Splunk Universal Forwarder and Sysmon, enabling visibility into Windows Event Logs across all domain-joined machines.
+- **Access Control** was enforced via Active Directory, restricting users to their department-specific workstations.
+- **Attack Detection** was validated by simulating brute-force attacks with Hydra and adversary techniques with Atomic Red Team, both of which were captured and visible in Splunk.
 
-This setup also emphasises the importance of SIEM platforms in detecting malicious activity. The failed logon attempts (Event Code 4625) from the Hydra attack and the suspicious account creation from Atomic Red Team were all recorded, demonstrating how security teams can use such logs to identify and respond to threats.
+This setup also emphasises the importance of SIEM platforms in detecting malicious activity. The logon attempts from the Hydra attack and the suspicious account creation from Atomic Red Team were all recorded, demonstrating how security teams can use such logs to identify and respond to threats.
 
 In Part 2, we will expand on this foundation by exploring security features available on Active Directory, and how to enhance scalability using Group Policies and Shared Resources.
 

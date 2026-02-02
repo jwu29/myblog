@@ -84,7 +84,7 @@ export default function RecommendedVideoItem({ video }) {
           </h3>
           <p className="text-xs text-gray-400">{video.channel}</p>
           <p className="text-xs text-gray-400">
-            {video.views} views • {video.uploaded}
+            {video.topic} • {video.uploaded}
           </p>
         </div>
       </div>
