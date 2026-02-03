@@ -37,7 +37,7 @@
       "views": "1.2M",
       "topic": "Cybersecurity",
       "uploaded": "2 Feb 2026",
-      "duration": "? min",
+      "duration": "15 min",
       "description": "A home lab simulating a virtual office network with Active Directory and Splunk, in order to simulate and detect brute-force attacks and adversary techniques using Kali Linux and Atomic Red Team.",
       "thumbnailColor": "from-orange-600 to-pink-600",
       "thumbnailImage": "Splunk-Project-Diagram.png",
@@ -45,15 +45,17 @@
       "markdownFile": "content"
     },
     {
-      "id": 4,
-      "title": "Coming Soon",
+      "id": "active-directory-gpo",
+      "title": "Small Office LAN Network Simulation with Active Directory (Part 2: Group Policy Objects and Shared Resources)",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "views": "5.8M",
-      "topic": "None",
-      "uploaded": "Unknown",
-      "duration": "? min",
+      "topic": "System Administration",
+      "uploaded": "Feb 2026",
+      "duration": "15 min",
       "description": "Perfect background music for studying and working.",
+      "markdownFolder": "active-directory-gpo",
+      "thumbnailImage": "AD-Project-Part2-Diagram.png",
       "thumbnailColor": "from-indigo-600 to-purple-600"
     },
     {
@@ -125,7 +127,7 @@
       "name": "System Administration & Security",
       "channelId": "testing",
       "videoCount": 3,
-      "videos": ["active-directory-splunk", 6, 7]
+      "videos": ["active-directory-splunk", "active-directory-gpo", 7]
     },
     {
       "id": 4,
