@@ -77,7 +77,7 @@ We now need to install Splunk Universal Forwarder and Sysmon in both `ADDC_Serve
 
 We first configure `ADDC_Server`, `Mgmt-PC` and `IT-PC` with their corresponding IPv4 addresses.
 
-![ADDC-IP-settings](./images/addc-server-ip-config.png)
+![ADDC-IP-settings](./images/addc-server-ip-config.png)  
 _Configure IPv4 address on ADDC_Server_
 
 We can then verify the IP configuration through the command `ipconfig all` on Command Prompt. Next, we will change the PC name on each device.
@@ -88,8 +88,8 @@ After configuration, the device would be able to connect to the Splunk instance,
 
 Moreover, we install the Splunk Universal Forwarder from the Splunk website on each VM.
 
-![Splunk-Univ-Forwarder](./images/splunk-universal-forwarder.png)
-![Splunk-Univ-Forwarder2](./images/splunk-universal-forwarder-02.png)
+![Splunk-Univ-Forwarder](./images/splunk-universal-forwarder.png)  
+![Splunk-Univ-Forwarder2](./images/splunk-universal-forwarder-02.png)  
 ![Splunk-Univ-Forwarder3](./images/splunk-universal-forwarder-04.png)
 
 Also, we install Sysmon from [Microsoft Learn](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon). In addition, the installation will be carried out according to the config file `sysmonconfig.xml`, which specifies what events to log or ignore. This configuration file is provided in the courtesy of `olafhartong` on [GitHub](https://github.com/olafhartong/sysmon-modular).
@@ -177,10 +177,10 @@ We first create an Organizational Unit (OU) for each department.
 
 Then create users in each department's OU.
 
-![ADDC-Management-OU](./images/ADDC-Management-Users.png)
+![ADDC-Management-OU](./images/ADDC-Management-Users.png)  
 _List of users in Management Department_
 
-![ADDC-IT-OU](./images/ADDC-IT-Users.png)
+![ADDC-IT-OU](./images/ADDC-IT-Users.png)  
 _List of users in Management Department_
 
 P.S. we should check the password requirements when creating our passwords. This can be found on `rsop.msc` > Computer Configuration > Policies > Windows Settings > Security Settings > Password Policy
@@ -223,73 +223,80 @@ Only when we type the correct credentials, we can log back in.
 
 In this part, we will create a new Group Policy Object (GPO) to allow network discovery. To do this, we need to open Server Manager > Group Policy Management; this leads to a new window. Then in the left panel, go to Forest > Domains > `SO-LAN.local` > Group Policy Objects. We can then create a new GPO named "Allow Network Discovery".
 
-![kali-ip-settings](./images/kali-ip-settings.png)
+![ADDC-New-GPO](./images/ADDC-New-GPO.png)
 
-![kali-ip-address](./images/kali-ip-address.png)
+In our GPO, we would like to add rules for inbound traffic to allow file sharing and network discovery. This can be done on Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security > Inbound Rules.
 
-After that, we need to retrieve a password list file. This is readily available in Kali Linux - `rockyou.txt.gz` in the folder `/usr/share/wordlists`.
-We have unzipped `rockyou.txt.gz` and store the first few passwords into a new file called `passwords.txt`.
+![ADDC-Inbound-Rules-config](./images/ADDC-Inbound-Rules-config.png)
 
-![kali-passwords-txt](./images/kali-passwords-txt.png)
+We can then add our desired rules, such as Network Discovery and File & Printer Sharing.
 
-To simulate our attack, we need to enable Remote Desktop Protocol (RDP) in our host machines. This is achieved by This PC > Properties > Related Systems > Advanced System Settings > Remote Tab > Allow Remote Conncetions this computer. We need to allow connections from our office users.
+![ADDC-File-Sharing-Allow](./images/ADDC-File-Sharing-Allow.png)
 
-![solan-allow-remote-connection](./images/solan-allow-remote-connection.png)
+![ADDC-File-Sharing-Predefined-Rules](./images/ADDC-File-Sharing-Predefined-Rules.png)
 
-Once RDP is activated, we can now launch a dictionary attack from Kali Linux using Hydra:
+![ADDC-Inbound-Rules-Final](./images/ADDC-Inbound-Rules-Final.png)
 
-![kali-dict-attack](./images/kali-passwords-dictionary-attack.png)
+Afterwards, go to Computer Configuration > Preferences > Control Panel Settings > Services to add the required services.
 
-The attack is successful. Now if we go back to Splunk, we can see there is a successfull log-on attempt by Kali Linux.
+- FDResPub
+- SSDPSRV
+- upnphost
 
-![splunk-event-codes](./images/splunk-event-codes.png)
+![ADDC-Services-FDResPub](./images/ADDC-Services-FDResPub.png)
 
-![splunk-attack-source](./images/splunk-attack-source.png)
+![ADDC-Services-FDResPub-Config](./images/ADDC-Services-FDResPub-Config.png)
+
+Here is our final configuration.
+
+![ADDC-Services-Final](./images/ADDC-Services-Final.png)
+
+Finally, we need to apply our newly created GPO onto each of our departmental OUs.
+
+![ADDC-Apply-GPO](./images/ADDC-Apply-GPO.png)
+
+Once that's done, we need to update the user policy through the command `gpupdate /force`. This will force update the user policies on each host machine.
+
+Now we can create a shared folder for sharing resources in our domain.
 
 ---
 
 ## Step 5 - Share resources via a shared folder
 
-Atomic Red Team is an open-source tool which is heavily utilised for security testing and simulating adverary tactics in accordance to the MITRE ATT&CK framework. It contains a library of small focused tests (known as "atomic tests") that mimic real-work attack techniques, allowing security teams to quickly evaluate their defense systems.
+Why would we want to create a shared resource folder in the first place? In Part 1, we have set up Splunk Universal Forwarder and Sysmon for every host PC. This is not a problem when there are only a few of them, but this becomes problematic when the number of hosts increases.
 
-Firstly, we type the command `Set-ExecutionPolicy Bypass CurrentUser` to allow unrestricted execution of PowerShell scripts for the current user.
+Therefore, a shared folder is necessary to fasten up the setting up process, hence increasing scalability of the network.
 
-![powershell-bypass](./images/powershell-turn-off-warnings.png)
+For each PC, go to This PC > Local Disk C: and create new folder called `SharedData`.
 
-We then implement an exclusion for the C:\ Drive, so that Windows Defender won't automatically remove files from Atomic Red Team as it may be detected as a source of threat.
+We then need to head to Server Manager > File and Storage Services > Shares to create a new share on SMB.
 
-![cdrive-exclusion](./images/folder-exclusion.png)
+![SharedData-New-Share](./images/SharedData-New-Share.png)
 
-We now can install Atomic Red Team.
+We then go to its Properties > Security > Edit... to change folder access permissions. Here, we choose all users of `SO-LAN` to access folder contents.
 
-![install-atomic-red-team](./images/powershell-install-atomic-redteam.png)
+![SharedData-Folder-Permissions](./images/SharedData-folder-permissions.png)
 
-There is a large range of MITRE ATT&CK techniques available for testing in Atomic Red Team. In this part, we have chosen T1136.001, which is Account Creation (Local Account). This script creates a new user named `NewLocalUser` and deletes it immediately afterwards.
+![SharedData-Folder-Permissions2](./images/SharedData-folder-permissions2.png)
 
-Let's see if Splunk can detect this attack. Here, we search for `index="endpoint" NewLocalUser`.
+We can see that `SharedData` is accessible in any PC that has joined the domain.
 
-![splunk-newlocaluser](./images/splunk-endpoint-newlocaluser-search.png)
+![SharedData-ADDC-Server](./images/SharedData-ADDC-SERVER.png)
 
-![splunk-newlocaluser2](./images/splunk-endpoint-newlocaluser-search2.png)
+Now we can put Splunk Universal Forwarder and Sysmon into the `SharedData` folder.
 
-Nice. Now we can try T1059, Command and Scripting Interpreter for Powershell.
+![Shared-Data-Access](./images/Shared-Data-Access.png)
 
-On Splunk, if we serach `powershell bypass`, we can find the corresponding event after executing the command.
-
-![splunk-t1059](./images/splunk-t1059-search-result.png)
-
----
+Voila! Any PC which just joined the domain can just download from the folder, without having to download from the Internet again!
 
 ## Conclusion
 
-In this project, we successfully built a small office LAN environment that demonstrates fundamental enterprise security monitoring concepts. By integrating Splunk with Active Directory, we created a realistic network where it contains the following security features:
+In this project, we built a small-office LAN network that contains the following features:
 
-- **Centralised Logging** was achieved through Splunk Universal Forwarder and Sysmon, enabling visibility into Windows Event Logs across all domain-joined machines.
-- **Access Control** was enforced via Active Directory, restricting users to their department-specific workstations.
-- **Attack Detection** was validated by simulating brute-force attacks with Hydra and adversary techniques with Atomic Red Team, both of which were captured and visible in Splunk.
+- **Resource Sharing** was achieved through creating a new GPO that allows network discovery and file sharing for domain users only.
+- **Scalability** was achieved by the creation of Organizational Units (OUs) and enforcing Group Policy Objects (GPOs) standardising user policies on these OUs.
+- **Access Control** was implemented via Active Directory, restricting users to their department-specific workstations.
 
-This setup also emphasises the importance of SIEM platforms in detecting malicious activity. The logon attempts from the Hydra attack and the suspicious account creation from Atomic Red Team were all recorded, demonstrating how security teams can use such logs to identify and respond to threats.
-
-In Part 2, we will expand on this foundation by exploring security features available on Active Directory, and how to enhance scalability using Group Policies and Shared Resources.
+This setup utilises Active Directory for centralised management of a LAN network, highlighting its significance in modern office and business networks today.
 
 ---
