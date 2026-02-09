@@ -114,22 +114,22 @@
       "id": 1,
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
-      "videoCount": 3,
+      "videoCount": 2,
       "videos": ["sample-document", "aws-code-artifact"]
     },
     {
       "id": 2,
-      "name": "Cloud Technology",
+      "name": "Cloud Security",
       "channelId": "testing",
       "videoCount": 1,
-      "videos": [4]
+      "videos": ["aws-vpc-s3"]
     },
     {
       "id": 3,
-      "name": "System Administration & Security",
+      "name": "System Administration",
       "channelId": "testing",
-      "videoCount": 3,
-      "videos": ["active-directory-splunk", "active-directory-gpo", 7]
+      "videoCount": 2,
+      "videos": ["active-directory-splunk", "active-directory-gpo"]
     },
     {
       "id": 4,
