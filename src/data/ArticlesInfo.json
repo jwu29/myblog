@@ -36,7 +36,7 @@
       "channelId": "testing",
       "views": "1.2M",
       "topic": "Cybersecurity",
-      "uploaded": "2 Feb 2026",
+      "uploaded": "Feb 2026",
       "duration": "15 min",
       "description": "A home lab simulating a virtual office network with Active Directory and Splunk, in order to simulate and detect brute-force attacks and adversary techniques using Kali Linux and Atomic Red Team.",
       "thumbnailColor": "from-orange-600 to-pink-600",
