@@ -1,14 +1,6 @@
 ![NextWork](https://cdn.prod.website-files.com/677c400686e724409a5a7409/6790ad949cf622dc8dcd9fe4_nextwork-logo-leather.svg)
 
-# Access S3 from a VPC
-
-## Access S3 from a VPC
-
-![Image](http://learn.nextwork.org/motivated_indigo_zealous_griffin/uploads/aws-networks-s3_3e1e79a2)
-
----
-
-## Introducing Today's Project!
+## Introduction
 
 ### What is Amazon VPC?
 
@@ -39,6 +31,8 @@ In this step, I will directly connect to the EC2 through the public internet bec
 ### Step 3 - Set up access keys
 
 In this step, I will give EC2 instance acess to AWS environment because it needs proper authentication credentials to interact with AWS services like S3.
+
+![Image](http://learn.nextwork.org/motivated_indigo_zealous_griffin/uploads/aws-networks-s3_3e1e79a2)
 
 ---
 
