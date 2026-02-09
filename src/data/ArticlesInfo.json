@@ -59,14 +59,16 @@
       "thumbnailColor": "from-indigo-600 to-purple-600"
     },
     {
-      "id": 5,
-      "title": "Coming Soon",
+      "id": "aws-vpc-s3",
+      "title": "Access S3 from a VPC",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "views": "450K",
-      "topic": "None",
-      "uploaded": "Unknown",
-      "duration": "? min",
+      "topic": "Cloud Security",
+      "uploaded": "Nov 2025",
+      "duration": "5 min",
+      "markdownFolder": "aws-vpc-s3",
+      "thumbnailImage": "architecture-aws-vpc-s3.png",
       "description": "Easy and delicious recipes you can make at home.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
