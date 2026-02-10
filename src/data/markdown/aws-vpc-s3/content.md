@@ -1,16 +1,14 @@
-![NextWork](https://cdn.prod.website-files.com/677c400686e724409a5a7409/6790ad949cf622dc8dcd9fe4_nextwork-logo-leather.svg)
+# Introduction
 
-## Introduction
-
-### What is Amazon VPC?
+## What is Amazon VPC?
 
 Amazon VPC is a virtual private cloud service that allows you to launch AWS resources in a logically isolated virtual network and it is useful because it provides security, network control, and isolation for your AWS resources.
 
-### How I used Amazon VPC in this project
+## How I used Amazon VPC in this project
 
 In today's project, I used Amazon VPC to create an isolated network environment for my EC2 instance to securely access S3 storage.
 
-### One thing I didn't expect in this project was...
+## One thing I didn't expect in this project was...
 
 One thing I didn't expect in this project was how straightforward it was to connect EC2 to S3 once the access keys were properly configured
 
