@@ -8,7 +8,7 @@
       "topic": "Cloud Security",
       "uploaded": "Jan 2026",
       "duration": "10 min",
-      "description": "Explore the wonders of nature in stunning 4K resolution.",
+      "description": "A hands-ob lab that involves setting up AWS CodeArtifact as a centralized, secure package repository for a Java application on EC2, covering domain/repository creation, IAM role-based authentication, Maven configuration, and dependency caching to improve build security and reliability.",
       "thumbnailImage": "aws-code-artifact.png",
       "markdownFolder": "aws-code-artifact",
       "markdownFile": "content"
@@ -95,7 +95,7 @@
     },
     {
       "id": 3,
-      "name": "System Administration",
+      "name": "System Administration & Security",
       "channelId": "testing",
       "videos": ["active-directory-splunk", "active-directory-gpo"]
     }
