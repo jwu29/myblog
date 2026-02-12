@@ -1,29 +1,13 @@
 {
   "articles": [
     {
-      "id": "sample-document",
-      "title": "Test Document",
-      "channel": "Josiah Wu",
-      "channelId": "testing",
-      "views": "2.5M",
-      "topic": "Cloud Security",
-      "uploaded": "3 days ago",
-      "duration": "12:34",
-      "likes": 543,
-      "description": "Just a test article.",
-      "thumbnailImage": "aws-cicd.png",
-      "markdownFolder": "sample-document",
-      "markdownFile": "content"
-    },
-    {
       "id": "aws-code-artifact",
       "title": "Secure Packages with Code Artifact",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "topic": "Cloud Security",
-      "uploaded": "1 week ago",
-      "duration": "5 min",
-      "likes": 543,
+      "uploaded": "Jan 2026",
+      "duration": "10 min",
       "description": "Explore the wonders of nature in stunning 4K resolution.",
       "thumbnailImage": "aws-code-artifact.png",
       "markdownFolder": "aws-code-artifact",
@@ -34,7 +18,6 @@
       "title": "Small Office LAN Network Simulation with Active Directory (Part 1: Splunk Server)",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "views": "1.2M",
       "topic": "Cybersecurity",
       "uploaded": "Feb 2026",
       "duration": "15 min",
@@ -49,7 +32,6 @@
       "title": "Small Office LAN Network Simulation with Active Directory (Part 2: Group Policy Objects and Shared Resources)",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "views": "5.8M",
       "topic": "System Administration",
       "uploaded": "Feb 2026",
       "duration": "15 min",
@@ -63,50 +45,39 @@
       "title": "Access S3 from a VPC",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "views": "450K",
       "topic": "Cloud Security",
       "uploaded": "Nov 2025",
-      "duration": "5 min",
+      "duration": "10 min",
       "markdownFolder": "aws-vpc-s3",
       "thumbnailImage": "architecture-aws-vpc-s3.png",
-      "description": "Easy and delicious recipes you can make at home.",
+      "description": "A hands-on lab to building a secure AWS VPC architecture that connects an EC2 instance to Amazon S3, covering networking fundamentals, authentication methods (access keys vs IAM roles), and AWS CLI operations for cloud storage interaction.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
-      "id": 6,
-      "title": "Coming Soon",
+      "id": "aws-terraform-s3",
+      "title": "Create S3 Buckets with Terraform",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "views": "3.2M",
-      "topic": "None",
-      "uploaded": "Unknown",
-      "duration": "? min",
-      "description": "Latest gadgets and tech reviews for 2024.",
-      "thumbnailColor": "from-blue-600 to-cyan-600"
+      "topic": "DevOps",
+      "uploaded": "Nov 2025",
+      "duration": "10 min",
+      "markdownFolder": "aws-terraform-s3",
+      "thumbnailImage": "aws-s3-terraform-thumbnail.png",
+      "description": "A hands-on lab to building a secure AWS VPC architecture that connects an EC2 instance to Amazon S3, covering networking fundamentals, authentication methods (access keys vs IAM roles), and AWS CLI operations for cloud storage interaction.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
-      "id": 7,
-      "title": "Coming Soon",
+      "id": "aws-github",
+      "title": "Create S3 Buckets with Terraform",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "views": "920K",
-      "topic": "None",
-      "uploaded": "Unknown",
-      "duration": "? min",
-      "description": "Full body workout routine for beginners.",
-      "thumbnailColor": "from-green-600 to-teal-600"
-    },
-    {
-      "id": 8,
-      "title": "Coming Soon",
-      "channel": "Josiah Wu",
-      "channelId": "testing",
-      "views": "1.8M",
-      "topic": "None",
-      "uploaded": "Unknown",
-      "duration": "? min",
-      "description": "Exploring unsolved mysteries throughout history.",
-      "thumbnailColor": "from-purple-600 to-pink-600"
+      "topic": "Cloud Security",
+      "uploaded": "Dev 2025",
+      "duration": "10 min",
+      "markdownFolder": "aws-github",
+      "thumbnailImage": "aws-github-thumbnail.png",
+      "description": "A hands-on lab demonstrating how to set up Git on an AWS EC2 instance running Amazon Linux, connect it to a GitHub repository using Personal Access Tokens for authentication, and implement the fundamental version control workflow of staging, committing, and pushing code changes to a remote repository.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
   "playlists": [
@@ -114,29 +85,19 @@
       "id": 1,
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
-      "videoCount": 2,
-      "videos": ["sample-document", "aws-code-artifact"]
+      "videos": ["aws-terraform-s3"]
     },
     {
       "id": 2,
       "name": "Cloud Security",
       "channelId": "testing",
-      "videoCount": 1,
-      "videos": ["aws-vpc-s3"]
+      "videos": ["aws-vpc-s3", "aws-code-artifact", "aws-github"]
     },
     {
       "id": 3,
       "name": "System Administration",
       "channelId": "testing",
-      "videoCount": 2,
       "videos": ["active-directory-splunk", "active-directory-gpo"]
-    },
-    {
-      "id": 4,
-      "name": "Others",
-      "channelId": "testing",
-      "videoCount": 2,
-      "videos": []
     }
   ]
 }

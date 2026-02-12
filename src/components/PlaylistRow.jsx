@@ -40,7 +40,7 @@ function PlaylistRow({ playlist, videos }) {
         <div className="flex items-center gap-3">
           <h2 className="text-xl font-bold">{playlist.name}</h2>
           <span className="text-sm text-gray-400">
-            {playlist.videoCount} articles
+            {playlist.videos.length} articles
           </span>
         </div>
         {/*
