@@ -68,7 +68,7 @@
     },
     {
       "id": "aws-github",
-      "title": "Create S3 Buckets with Terraform",
+      "title": "Setting Up Git and GitHub on AWS EC2",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "topic": "Cloud Security",
