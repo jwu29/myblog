@@ -104,7 +104,12 @@
       "id": 2,
       "name": "Cloud Security",
       "channelId": "testing",
-      "videos": ["aws-vpc-s3", "aws-code-artifact", "aws-github"]
+      "videos": [
+        "aws-vpc-s3",
+        "aws-code-artifact",
+        "aws-github",
+        "aws-security-kms"
+      ]
     },
     {
       "id": 3,
