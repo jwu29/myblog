@@ -50,7 +50,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-vpc-s3",
       "thumbnailImage": "architecture-aws-vpc-s3.png",
-      "description": "A hands-on lab to building a secure AWS VPC architecture that connects an EC2 instance to Amazon S3, covering networking fundamentals, authentication methods (access keys vs IAM roles), and AWS CLI operations for cloud storage interaction.",
+      "description": "A lab building a secure AWS VPC architecture that connects an EC2 instance to Amazon S3, covering networking fundamentals, authentication methods (access keys vs IAM roles), and AWS CLI operations for cloud storage interaction.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -77,6 +77,19 @@
       "markdownFolder": "aws-github",
       "thumbnailImage": "aws-github-thumbnail.png",
       "description": "A hands-on lab demonstrating how to set up Git on an AWS EC2 instance running Amazon Linux, connect it to a GitHub repository using Personal Access Tokens for authentication, and implement the fundamental version control workflow of staging, committing, and pushing code changes to a remote repository.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-security-kms",
+      "title": "Data Encryption with AWS KMS",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Cloud Security",
+      "uploaded": "Feb 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-security-kms",
+      "thumbnailImage": "aws-security-kms-thumbnail.png",
+      "description": "A guide to encrypting a DynamoDB table using a customer managed key (CMK) in AWS KMS, demonstrating how transparent data encryption blocks unauthorised access while remaining invisible to legitimate users.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
