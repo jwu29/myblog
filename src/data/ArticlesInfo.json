@@ -91,6 +91,19 @@
       "thumbnailImage": "aws-security-kms-thumbnail.png",
       "description": "A guide to encrypting a DynamoDB table using a customer managed key (CMK) in AWS KMS, demonstrating how transparent data encryption blocks unauthorised access while remaining invisible to legitimate users.",
       "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-eks-kubernetes",
+      "title": "Create Kubernetes Cluster with AWS EKS",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Mar 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-eks-kubernetes",
+      "thumbnailImage": "aws-eks-diagram.png",
+      "description": "A guide to launching a Kubernetes cluster on AWS EKS using eksctl, covering CloudFormation-based infrastructure provisioning, IAM access entries for console connectivity, and the cluster's self-healing behaviour through Auto Scaling Groups.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
   "playlists": [
@@ -98,7 +111,7 @@
       "id": 1,
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
-      "videos": ["aws-terraform-s3"]
+      "videos": ["aws-terraform-s3", "aws-eks-kubernetes"]
     },
     {
       "id": 2,
