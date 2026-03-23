@@ -110,12 +110,25 @@
       "title": "Building a Security Monitoring System in AWS",
       "channel": "Josiah Wu",
       "channelId": "testing",
-      "topic": "Cloud Security",
+      "topic": "Data Engineering & DevOps",
       "uploaded": "Mar 2026",
       "duration": "10 min",
       "markdownFolder": "aws-security-monitoring",
       "thumbnailImage": "aws-security-monitoring-architecture.png",
-      "description": "A guide to launching a Kubernetes cluster on AWS EKS using eksctl, covering CloudFormation-based infrastructure provisioning, IAM access entries for console connectivity, and the cluster's self-healing behaviour through Auto Scaling Groups.",
+      "description": "A walkthrough of building an AWS security monitoring pipeline using CloudTrail, CloudWatch, Secrets Manager, and SNS to detect and alert on secret access events.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "multicloud-storage",
+      "title": "Multi-Cloud Data Transfer with AWS and GCP",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Cloud Security",
+      "uploaded": "Mar 2026",
+      "duration": "10 min",
+      "markdownFolder": "multicloud-storage",
+      "thumbnailImage": "multicloud-architecture.png",
+      "description": "A step-by-step manual to building an automated multi-cloud backup pipeline that transfers files from AWS S3 to Google Cloud Storage using GCP's Storage Transfer Service and identity federation.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
@@ -124,7 +137,12 @@
       "id": 1,
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
-      "videos": ["aws-terraform-s3", "aws-eks-kubernetes"]
+      "videos": [
+        "aws-terraform-s3",
+        "aws-eks-kubernetes",
+        "aws-code-artifact",
+        "aws-security-kms"
+      ]
     },
     {
       "id": 2,
@@ -132,10 +150,9 @@
       "channelId": "testing",
       "videos": [
         "aws-vpc-s3",
-        "aws-code-artifact",
         "aws-github",
-        "aws-security-kms",
-        "aws-security-monitoring"
+        "aws-security-monitoring",
+        "multicloud-storage"
       ]
     },
     {
