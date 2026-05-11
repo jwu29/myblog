@@ -29,7 +29,7 @@ export default function AboutMeMain() {
           <h1 className="text-3xl font-bold">Josiah Wu</h1>
           <p className="text-gray-400">Student | IT enthusiast</p>
           <p className="text-gray-400 max-w-4xl">
-            - IT Administrator @ GLETCC, Australia
+            - Junior IT Administrator @ GLETCC, Australia
           </p>
           <p className="text-gray-400 max-w-4xl">
             - Masters of IT, Cybersecurity Major @ University of Technology
@@ -40,7 +40,8 @@ export default function AboutMeMain() {
             London, UK
           </p>
           <p className="text-gray-400 max-w-4xl">
-            - Special interests in DevOps, Cloud Security, System Administration
+            - Interested in Blue Team Security (especially Cloud Security),
+            System Administration
           </p>
           <div className="flex items-center gap-3 mt-2">
             <a
