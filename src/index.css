@@ -219,10 +219,11 @@ button:focus-visible {
 }
 
 .markdown-content img {
-  max-width: 70%;
+  max-width: 100%;
   height: auto;
   border-radius: 0.5rem;
-  margin: 1rem 0;
+  margin: 1rem auto;
+  display: block;
 }
 
 .markdown-content strong {
@@ -231,6 +232,6 @@ button:focus-visible {
 }
 
 .markdown-content em {
-  font-style: italic;
-  color: #686868;
+  font-weight: 700;
+  color: #ffffff;
 }

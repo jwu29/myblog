@@ -242,7 +242,7 @@ export default function MarkdownViewerPage() {
                   <p className="text-gray-400">Loading document...</p>
                 </div>
               ) : (
-                <div className="markdown-content">
+                <div className="markdown-content max-w-3xl mx-auto">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{

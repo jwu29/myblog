@@ -130,11 +130,88 @@
       "thumbnailImage": "multicloud-architecture.png",
       "description": "A step-by-step manual to building an automated multi-cloud backup pipeline that transfers files from AWS S3 to Google Cloud Storage using GCP's Storage Transfer Service and identity federation.",
       "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-part1",
+      "title": "Private Cloud Home Lab (Part 1: Hardware Setup & Proxmox Installation)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Home Lab",
+      "uploaded": "June 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-part1",
+      "thumbnailImage": "Moto-002-copy.jpg",
+      "description": "A step-by-step walkthrough of assembling the hardware and converting an HP EliteDesk Mini PC into a bare-metal Proxmox VE hypervisor as the foundation for a self-hosted private cloud.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-part2",
+      "title": "Private Cloud Home Lab (Part 2: Creating a NextcloudPi LXC Container)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Home Lab",
+      "uploaded": "June 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-part2",
+      "thumbnailImage": "Mac-011-copy.png",
+      "description": "A walkthrough on how to provision a NextcloudPi LXC container on Proxmox VE, covering Ubuntu template download, secure unprivileged container configuration, and automated installation using the Proxmox VE Helper Scripts community installer.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-part3",
+      "title": "Private Cloud Home Lab (Part 3: Setting Up a Containerized Nextcloud Instance with Docker)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Home Lab",
+      "uploaded": "June 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-part3",
+      "thumbnailImage": "Mac-066-copy.png",
+      "description": "A guide on how to install Docker on an Ubuntu Server LXC container and deploy a Nextcloud instance backed by MariaDB using Docker Compose",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-part4",
+      "title": "Private Cloud Home Lab (Part 4: Securing Nextcloud with Tailscale VPN and Access Control)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Home Lab",
+      "uploaded": "June 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-part4",
+      "thumbnailImage": "Windows-005-copy.png",
+      "description": "A walkthrough on how to secure remote access to a self-hosted Nextcloud instance by integrating Tailscale, enforcing tag-based ACL policies to restrict inter-device traffic, and preparing least-privilege AWS IAM credentials for the upcoming S3 backup in Part 5.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-part5",
+      "title": "Private Cloud Home Lab (Part 5: On-Premises and AWS Storage Backup)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Home Lab",
+      "uploaded": "June 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-part5",
+      "thumbnailImage": "Windows-003.png",
+      "description": "A step-by-step walkthrough on how to set up a fully automated dual-layer backup system for a self-hosted Nextcloud instance, mirroring data nightly to both a locally-mounted external SSD and an AWS S3 bucket using a Bash script scheduled via cron.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
   "playlists": [
     {
       "id": 1,
+      "name": "Private Cloud Home Lab Series",
+      "channelId": "testing",
+      "videos": [
+        "home-lab-part1",
+        "home-lab-part2",
+        "home-lab-part3",
+        "home-lab-part4",
+        "home-lab-part5"
+      ]
+    },
+    {
+      "id": 2,
       "name": "Data Engineering & DevOps",
       "channelId": "testing",
       "videos": [
@@ -145,7 +222,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Cloud Security",
       "channelId": "testing",
       "videos": [
@@ -156,7 +233,7 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "System Administration & Security",
       "channelId": "testing",
       "videos": ["active-directory-splunk", "active-directory-gpo"]
