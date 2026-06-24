@@ -16,7 +16,7 @@ In this home lab project, I have built a private cloud hosted on a Docker LXC Co
 
 ![Tailscale Home Page](./images/Mac-073.png)
 
-Picking up from Part 3, we have a fully operational Nextcloud instance running at `http://192.168.0.141:8080` — but it is only reachable from within the local network. To access it securely from anywhere, we will use **Tailscale**, a zero-config VPN built on WireGuard. Navigating to the "Settings -> Keys" section of the Tailscale admin console at `login.tailscale.com`, we can see that no auth keys exist yet. Auth keys allow us to authenticate devices into our tailnet without requiring an interactive browser login — exactly what we need to enrol the Nextcloud container programmatically.
+Picking up from Part 3, we have a fully operational Nextcloud instance running — but it is only reachable from within the local network. To access it securely from anywhere, we will use **Tailscale**, a zero-config VPN built on WireGuard. Navigating to the "Settings -> Keys" section of the Tailscale admin console at `login.tailscale.com`, we can see that no auth keys exist yet. Auth keys allow us to authenticate devices into our tailnet without requiring an interactive browser login — exactly what we need to enrol the Nextcloud container programmatically.
 
 ![Tailscale Auth Key Creation](./images/Mac-074.png)
 
@@ -66,7 +66,7 @@ Logging in with the administrator credentials brings up the Nextcloud Dashboard.
 
 ![Tailscale Access Control JSON](./images/Windows-005-copy.png)
 
-With Nextcloud accessible over Tailscale, the next step is to enforce **access control** so that not every device on the tailnet can communicate freely with every other. In the Tailscale admin console under "Access controls", we edit the policy file in JSON mode to define two logical roles: `tag:server` (for the Nextcloud host) and `tag:host` (for personal client devices). The `tagOwners` block assigns ownership of both tags to `josiahwu29@gmail.com`.
+With Nextcloud accessible over Tailscale, the next step is to enforce **access control** so that not every device on the tailnet can communicate freely with every other. In the Tailscale admin console under "Access controls", we edit the policy file in JSON mode to define two logical roles: `tag:server` (for the Nextcloud host) and `tag:host` (for personal client devices).
 
 Two ACL rules are defined: the first allows any machine tagged `tag:host` to initiate connections to any port on machines tagged `tag:server`; the second allows the server to initiate connections back to the hosts. An SSH rule is also added, permitting `tag:host` machines to SSH into `tag:server` as `root` or a named user. This policy ensures that inter-device traffic between personal machines is blocked by default — only host-to-server and server-to-host communication is permitted.
 

@@ -118,15 +118,15 @@ This schedules the backup script to run automatically at **02:20 AEST every nigh
 
 The following morning, the backup directory is inspected with `ls -lh /mnt/backup-ssd`, revealing a growing collection of timestamped backup files spanning both 11 June and 12 June. Entries timestamped around 02:20 AEST confirm that the cron job fired as scheduled and completed without any manual intervention. The on-premises backup is now fully automated.
 
-## Remote Backup: AWS
+## Remote Backup: AWS S3
 
 ![Update & aws configure](./images/Mac-134.png)
 
-Picking up from the AWS IAM credentials prepared in Part 4, we now configure the AWS CLI on the Nextcloud server. Running `sudo apt update` confirms all packages are current, and `sudo apt install awscli -y` confirms the AWS CLI is already installed at version `2.31.35-1`. We then run `aws configure` to supply the access key ID and secret access key for the `jwu29-nextcloud-server-user` IAM account created in Part 4, along with the default region and output format.
+Picking up from the AWS IAM credentials prepared in Part 4, we now configure the AWS CLI on the Nextcloud server. Running `sudo apt update` confirms all packages are current, and `sudo apt install awscli -y` confirms the AWS CLI is already installed at version `2.31.35-1`. We then run `aws configure` to supply the access key ID and secret access key for the IAM user created in Part 4, along with the default region and output format.
 
 ![Open S3 bucket](./images/Mac-137.png)
 
-With the CLI configured, we verify connectivity to the S3 bucket with `aws s3 ls s3://jwu29-nextcloud-server-backup`. The command returns no output, confirming that the bucket exists and is accessible but currently contains no objects — exactly as expected before the first upload.
+With the CLI configured, we verify connectivity to the S3 bucket with `aws s3 ls s3://<bucket-name>`. The command returns no output, confirming that the bucket exists and is accessible but currently contains no objects — exactly as expected before the first upload.
 
 ![Add S3 Backup commands](./images/Mac-138.png)
 
@@ -134,7 +134,7 @@ We update `nextcloud-backup.sh` to append an S3 sync step after the local SSD ba
 
 ```bash
 echo "Syncing backups to AWS S3..."
-aws s3 sync /mnt/backup-ssd s3://jwu29-nextcloud-server-backup --delete
+aws s3 sync /mnt/backup-ssd s3://<bucket-name> --delete
 echo "S3 sync completed successfully."
 ```
 
@@ -150,7 +150,7 @@ A final check confirms that 14 objects are now present in the bucket — seven `
 
 ![S3 Bucket (GUI)](./images/Windows-003.png)
 
-The same bucket contents are confirmed through the AWS S3 console. The `jwu29-nextcloud-server-backup` bucket is listed in the **Amazon S3** interface showing 14 objects with their upload timestamps of 12 June 2026. The console view serves as a final cross-check that the files are not only reachable via the CLI but are genuinely stored and accessible within the AWS S3 service.
+The same bucket contents are confirmed through the AWS S3 console. The bucket is listed in the **Amazon S3** interface showing 14 objects with their upload timestamps of 12 June 2026. The console view serves as a final cross-check that the files are not only reachable via the CLI but are genuinely stored and accessible within the AWS S3 service.
 
 ## Conclusion
 
