@@ -141,7 +141,7 @@
       "duration": "10 min",
       "markdownFolder": "home-lab-part1",
       "thumbnailImage": "Moto-002-copy.jpg",
-      "description": "A step-by-step walkthrough of assembling the hardware and converting an HP EliteDesk Mini PC into a bare-metal Proxmox VE hypervisor as the foundation for a self-hosted private cloud.",
+      "description": "A step-by-step guide on how to assemble the hardware and converting a Mini PC into a bare-metal Proxmox VE hypervisor as the foundation for a self-hosted private cloud.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -167,7 +167,7 @@
       "duration": "10 min",
       "markdownFolder": "home-lab-part3",
       "thumbnailImage": "Mac-066-copy.png",
-      "description": "A guide on how to install Docker on an Ubuntu Server LXC container and deploy a Nextcloud instance backed by MariaDB using Docker Compose",
+      "description": "A thorough guide on how to install Docker on an Ubuntu Server LXC container and deploy a Nextcloud instance backed by MariaDB using Docker Compose",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -195,12 +195,75 @@
       "thumbnailImage": "Windows-003.png",
       "description": "A step-by-step walkthrough on how to set up a fully automated dual-layer backup system for a self-hosted Nextcloud instance, mirroring data nightly to both a locally-mounted external SSD and an AWS S3 bucket using a Bash script scheduled via cron.",
       "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-security-part1",
+      "title": "Home Lab Security (Part 1: Network Isolation with OPNsense Firewall)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "Network Security",
+      "uploaded": "Aug 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-security-part1",
+      "thumbnailImage": "Security-Mac-125.png",
+      "description": "A walkthrough on segmenting a home network with OPNsense firewall, isolating the LAN with alias-driven rules and an implicit deny.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-security-part2",
+      "title": "Home Lab Security (Part 2: Hardening Remote Access with Tailscale)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "IAM Management",
+      "uploaded": "Aug 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-security-part2",
+      "thumbnailImage": "Security-Mac-123.png",
+      "description": "A thorough guide on tightening Tailscale access controls after a network migration annd approving route to the local LAN net.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-security-part3",
+      "title": "Home Lab Security (Part 3: Deploying Wazuh & Detecting Attacks on Nextcloud)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "SIEM & Threat Detection",
+      "uploaded": "Aug 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-security-part3",
+      "thumbnailImage": "Security-Mac-021.png",
+      "description": "A document diving into deploying Wazuh as a SIEM for Nextcloud, and building detection rules with MITRE ATT&CK tagging.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "home-lab-security-part4",
+      "title": "Home Lab Security (Part 4: Automated Email Alerting)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "SIEM & Threat Detection",
+      "uploaded": "Aug 2026",
+      "duration": "10 min",
+      "markdownFolder": "home-lab-security-part4",
+      "thumbnailImage": "Security-Mac-217.png",
+      "description": "A walkthrough of wiring Wazuh detection rules up to real email alerts on severe logs via a Postfix relay to prevent alert fatigue.",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
   "playlists": [
     {
       "id": 1,
-      "name": "Private Cloud Home Lab Series",
+      "name": "Home Lab Security Series (Season 2): Securing my Private Cloud",
+      "channelId": "testing",
+      "videos": [
+        "home-lab-security-part1",
+        "home-lab-security-part2",
+        "home-lab-security-part3",
+        "home-lab-security-part4"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Home Lab Series: Building a Private Cloud",
       "channelId": "testing",
       "videos": [
         "home-lab-part1",
@@ -208,17 +271,6 @@
         "home-lab-part3",
         "home-lab-part4",
         "home-lab-part5"
-      ]
-    },
-    {
-      "id": 2,
-      "name": "Data Engineering & DevOps",
-      "channelId": "testing",
-      "videos": [
-        "aws-terraform-s3",
-        "aws-eks-kubernetes",
-        "aws-code-artifact",
-        "aws-security-kms"
       ]
     },
     {
@@ -237,6 +289,17 @@
       "name": "System Administration & Security",
       "channelId": "testing",
       "videos": ["active-directory-splunk", "active-directory-gpo"]
+    },
+    {
+      "id": 5,
+      "name": "Data Engineering & DevOps",
+      "channelId": "testing",
+      "videos": [
+        "aws-terraform-s3",
+        "aws-eks-kubernetes",
+        "aws-code-artifact",
+        "aws-security-kms"
+      ]
     }
   ]
 }
