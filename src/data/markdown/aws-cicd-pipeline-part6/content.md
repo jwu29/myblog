@@ -1,5 +1,14 @@
 # Introduction
 
+Hello everyone! This is Part 6 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. [Setup of Web App in the Cloud](#/article/aws-cicd-pipeline-part1)
+2. [Connecting GitHub Repository with AWS](#/article/aws-cicd-pipeline-part2)
+3. [Secure Packages with CodeArtifact](#/article/aws-cicd-pipeline-part3)
+4. [Continuous Integration with CodeBuild](#/article/aws-cicd-pipeline-part4)
+5. [Initial Deployment with CodeDeploy](#/article/aws-cicd-pipeline-part5)
+6. _YOU ARE HERE!_ Continuous Deployment with CodePipeline.
+
 ## What is AWS CodePipeline?
 
 AWS CodePipeline is a fully managed continuous delivery service that automates the steps required to release software. It creates a workflow that automatically moves code changes through each stage of the release process, from source control, to build, to deployment.
@@ -119,13 +128,4 @@ This project completed my CI/CD pipeline on AWS. By connecting GitHub, CodeBuild
 - Each stage passes its output to the next stage as an artifact
 - Pipeline executions show the status of each stage and the commit being processed
 
-This project is the final part of a DevOps series where I built a CI/CD pipeline on AWS:
-
-1. **Part 1** - Set up a development environment on EC2 and created a Java web app
-2. **Part 2** - Put the web app under version control with Git and GitHub
-3. **Part 3** - Secured and centralised the app's dependencies with CodeArtifact
-4. **Part 4** - Automated building and testing with CodeBuild
-5. **Part 5** - Deployed the web app to a production environment with CloudFormation and CodeDeploy
-6. **Part 6** - Connected every stage into an automated pipeline with CodePipeline
-
-Together, these projects take a code change from a developer's commit all the way to a live website, automatically.
+This project is the final part of a DevOps series where I built a CI/CD pipeline on AWS. All together, these projects take a code change from a developer's commit all the way to a live website, automatically.

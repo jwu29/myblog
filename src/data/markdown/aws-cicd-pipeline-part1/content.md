@@ -1,10 +1,19 @@
 # Introduction
 
+Hello everyone! This is Part 1 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. _YOU ARE HERE!_ Setup of Web App in the Cloud
+2. [Connecting GitHub Repository with AWS](#/article/aws-cicd-pipeline-part2)
+3. [Secure Packages with CodeArtifact](#/article/aws-cicd-pipeline-part3)
+4. [Continuous Integration with CodeBuild](#/article/aws-cicd-pipeline-part4)
+5. [Initial Deployment with CodeDeploy](#/article/aws-cicd-pipeline-part5)
+6. [Continuous Deployment with CodePipeline](#/article/aws-cicd-pipeline-part6)
+
 ## What is this project about?
 
-This project lays the foundation for a CI/CD pipeline on AWS. Before code can be version-controlled, built, tested, or deployed automatically, there needs to be an application and a place to develop it. In this first part, I set up a cloud-based development environment on an Amazon EC2 instance, connected to it from VS Code, and generated a simple Java web application using Apache Maven.
+Before code can be version-controlled, built, tested, or deployed automatically, there needs to be an application and a place to develop it. In this first part, I set up a cloud-based development environment on an Amazon EC2 instance, connected to it from VS Code, and generated a simple Java web application using Apache Maven.
 
-Developing directly on a cloud server rather than a local machine is a common pattern in DevOps because it provides:
+Developing directly on a cloud server rather than a local machine is a common strategy in DevOps because it provides:
 
 - **Consistency**: Every developer works against the same operating system, tools, and configuration
 - **Accessibility**: The environment can be reached from any machine with the right credentials
@@ -146,7 +155,7 @@ Java is required because the web app is written in Java, and Maven itself runs o
 
 ### Verifying the Installations
 
-After installing both tools, I confirmed they were available:
+After installing both tools, I need to confirm they are both available:
 
 ```bash
 mvn -v

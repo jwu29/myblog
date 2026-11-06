@@ -1,5 +1,14 @@
 # Introduction
 
+Hello everyone! This is Part 3 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. [Setup of Web App in the Cloud](#/article/aws-cicd-pipeline-part1)
+2. [Connecting GitHub Repository with AWS](#/article/aws-cicd-pipeline-part2)
+3. _YOU ARE HERE!_ Secure Packages with CodeArtifact
+4. [Continuous Integration with CodeBuild](#/article/aws-cicd-pipeline-part4)
+5. [Initial Deployment with CodeDeploy](#/article/aws-cicd-pipeline-part5)
+6. [Continuous Deployment with CodePipeline](#/article/aws-cicd-pipeline-part6)
+
 ## What is AWS CodeArtifact?
 
 AWS CodeArtifact is a fully managed artifact repository service that stores, publishes, and shares software packages used in your development process. It functions as a secure, centralised storage solution for dependencies—the external libraries and frameworks that your applications rely upon to function.

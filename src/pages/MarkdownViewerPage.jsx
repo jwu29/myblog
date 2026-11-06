@@ -7,6 +7,8 @@ import {
   Share2,
   MoreHorizontal,
   FileText,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -29,6 +31,11 @@ export default function MarkdownViewerPage() {
   const [isLiked, setIsLiked] = useState(false);
   const [isDisliked, setIsDisliked] = useState(false);
   const [imageMap, setImageMap] = useState({});
+
+  // Start each article at the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     if (!document) {
@@ -126,6 +133,21 @@ export default function MarkdownViewerPage() {
   if (!document) {
     return null;
   }
+
+  // Find the series this article belongs to, and its neighbours.
+  // Only playlists marked "isSeries": true get Previous/Next buttons.
+  const playlist = articlesData.playlists?.find(
+    (p) => p.isSeries && p.videos.includes(id),
+  );
+  const seriesIndex = playlist ? playlist.videos.indexOf(id) : -1;
+  const findArticle = (articleId) =>
+    articlesData.articles.find((doc) => doc.id === articleId);
+  const prevArticle =
+    seriesIndex > 0 ? findArticle(playlist.videos[seriesIndex - 1]) : null;
+  const nextArticle =
+    playlist && seriesIndex < playlist.videos.length - 1
+      ? findArticle(playlist.videos[seriesIndex + 1])
+      : null;
 
   // Get related documents (exclude current one)
   const relatedDocuments = articlesData.articles
@@ -278,6 +300,48 @@ export default function MarkdownViewerPage() {
                   >
                     {markdownContent}
                   </ReactMarkdown>
+                </div>
+              )}
+
+              {/* Previous / Next article in series */}
+              {!loading && (prevArticle || nextArticle) && (
+                <div className="max-w-3xl mx-auto mt-12 pt-6 border-t border-zinc-700">
+                  <p className="text-sm text-gray-400 mb-3">
+                    {playlist.name} · Part {seriesIndex + 1} of{" "}
+                    {playlist.videos.length}
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 justify-between">
+                    {prevArticle ? (
+                      <Link
+                        to={`/article/${prevArticle.id}`}
+                        className="flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 px-4 py-3 rounded-xl transition sm:max-w-[48%]"
+                      >
+                        <ChevronLeft className="w-5 h-5 shrink-0" />
+                        <div>
+                          <div className="text-xs text-gray-400">Previous</div>
+                          <div className="font-semibold">
+                            {prevArticle.title}
+                          </div>
+                        </div>
+                      </Link>
+                    ) : (
+                      <div />
+                    )}
+                    {nextArticle && (
+                      <Link
+                        to={`/article/${nextArticle.id}`}
+                        className="flex items-center justify-end gap-2 bg-zinc-800 hover:bg-blue-700 px-4 py-3 rounded-xl transition text-right sm:max-w-[48%]"
+                      >
+                        <div>
+                          <div className="text-xs text-gray-400">Next</div>
+                          <div className="font-semibold">
+                            {nextArticle.title}
+                          </div>
+                        </div>
+                        <ChevronRight className="w-5 h-5 shrink-0" />
+                      </Link>
+                    )}
+                  </div>
                 </div>
               )}
             </div>

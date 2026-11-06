@@ -1,5 +1,14 @@
 # Introduction
 
+Hello everyone! This is Part 5 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. [Setup of Web App in the Cloud](#/article/aws-cicd-pipeline-part1)
+2. [Connecting GitHub Repository with AWS](#/article/aws-cicd-pipeline-part2)
+3. [Secure Packages with CodeArtifact](#/article/aws-cicd-pipeline-part3)
+4. [Continuous Integration with CodeBuild](#/article/aws-cicd-pipeline-part4)
+5. _YOU ARE HERE!_ Initial Deployment with CodeDeploy
+6. [Continuous Deployment with CodePipeline](#/article/aws-cicd-pipeline-part6)
+
 ## What is AWS CodeDeploy?
 
 AWS CodeDeploy is a fully managed deployment service that automates releasing application updates to servers such as Amazon EC2 instances. Where CodeBuild produces a packaged application, CodeDeploy takes that package and installs it on the servers that will run it, following a set of instructions defined alongside the code.

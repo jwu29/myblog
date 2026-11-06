@@ -1,5 +1,14 @@
 # Introduction
 
+Hello everyone! This is Part 4 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. [Setup of Web App in the Cloud](#/article/aws-cicd-pipeline-part1)
+2. [Connecting GitHub Repository with AWS](#/article/aws-cicd-pipeline-part2)
+3. [Secure Packages with CodeArtifact](#/article/aws-cicd-pipeline-part3)
+4. _YOU ARE HERE!_ Continuous Integration with CodeBuild
+5. [Initial Deployment with CodeDeploy](#/article/aws-cicd-pipeline-part5)
+6. [Continuous Deployment with CodePipeline](#/article/aws-cicd-pipeline-part6)
+
 ## What is AWS CodeBuild?
 
 AWS CodeBuild is a fully managed continuous integration (CI) service that compiles source code, runs tests, and produces software packages ready for deployment. It acts as a quality control checkpoint that automatically kicks in whenever changes are made to the codebase, verifying that everything still works as expected before those changes move further down the pipeline.

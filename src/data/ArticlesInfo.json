@@ -224,7 +224,7 @@
     },
     {
       "id": "aws-cicd-pipeline-part1",
-      "title": "AWS CI/CD Pipeline (Part 1: Setup Web App in the Cloud)",
+      "title": "AWS CI/CD Pipeline (Part 1: Setup of Web App in the Cloud)",
       "channel": "Josiah Wu",
       "channelId": "testing",
       "topic": "DevOps",
@@ -232,7 +232,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part1",
       "thumbnailImage": "aws-cicd-pipeline-part1-thumbnail.png",
-      "description": "...",
+      "description": "A guide to set up a cloud development environment on an AWS EC2 instance, covering key pair security, SSH access from VS Code with the Remote - SSH extension, and generating a Java web app with Apache Maven.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -245,7 +245,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part2",
       "thumbnailImage": "aws-cicd-pipeline-part2-thumbnail.png",
-      "description": "...",
+      "description": "A guide to putting a Java web app on EC2 under version control with Git and GitHub, covering the add-commit-push workflow, local vs remote repositories, and authenticating with Personal Access Tokens.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -258,7 +258,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part3",
       "thumbnailImage": "aws-cicd-pipeline-part3-thumbnail.png",
-      "description": "...",
+      "description": "A guide to secure and centralise a Java web app's dependencies with AWS CodeArtifact, covering domains, upstream repositories, IAM role-based access for EC2, and connecting Maven through settings.xml.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -271,7 +271,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part4",
       "thumbnailImage": "aws-cicd-pipeline-part4-thumbnail.png",
-      "description": "...",
+      "description": "A guide to automating builds and tests with AWS CodeBuild, covering GitHub integration through AWS CodeConnections, defining build phases in buildspec.yml, storing artifacts in S3, and troubleshooting failed builds.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -284,7 +284,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part5",
       "thumbnailImage": "aws-cicd-pipeline-part5-thumbnail.png",
-      "description": "...",
+      "description": "A guide to deploying a Java web app to a production EC2 instance with AWS CodeDeploy, covering Infrastructure as Code with CloudFormation, deployment scripts, appspec.yml, and deployment groups.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -297,7 +297,7 @@
       "duration": "10 min",
       "markdownFolder": "aws-cicd-pipeline-part6",
       "thumbnailImage": "aws-cicd-pipeline-part6-thumbnail.png",
-      "description": "...",
+      "description": "A guide to connecting GitHub, CodeBuild, and CodeDeploy into an automated CI/CD pipeline with AWS CodePipeline, covering execution modes, webhook triggers, and pipeline stages, so every push to GitHub is built and deployed automatically.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
@@ -305,6 +305,7 @@
     {
       "id": 1,
       "name": "AWS CI/CD Pipeline Series",
+      "isSeries": true,
       "channelId": "testing",
       "videos": [
         "aws-cicd-pipeline-part1",
@@ -318,6 +319,7 @@
     {
       "id": 2,
       "name": "Home Lab Security Series (Season 2): Securing my Private Cloud",
+      "isSeries": true,
       "channelId": "testing",
       "videos": [
         "home-lab-security-part1",
@@ -329,6 +331,7 @@
     {
       "id": 3,
       "name": "Home Lab Series: Building a Private Cloud",
+      "isSeries": true,
       "channelId": "testing",
       "videos": [
         "home-lab-part1",
@@ -352,6 +355,7 @@
     {
       "id": 5,
       "name": "System Administration & Security",
+      "isSeries": true,
       "channelId": "testing",
       "videos": ["active-directory-splunk", "active-directory-gpo"]
     },

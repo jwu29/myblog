@@ -1,18 +1,19 @@
 # Introduction
 
+Hello everyone! This is Part 2 of a series of articles documenting how I built a CI/CD pipeline on AWS, which will be divied into different parts. This project is part of an assignment in my university course - Professional Practice in Computing.
+
+1. [Setup of Web App in the Cloud](#/article/aws-cicd-pipeline-part1)
+2. _YOU ARE HERE!_ Connecting GitHub Repository with AWS
+3. [Secure Packages with CodeArtifact](#/article/aws-cicd-pipeline-part3)
+4. [Continuous Integration with CodeBuild](#/article/aws-cicd-pipeline-part4)
+5. [Initial Deployment with CodeDeploy](#/article/aws-cicd-pipeline-part5)
+6. [Continuous Deployment with CodePipeline](#/article/aws-cicd-pipeline-part6)
+
 ## What is Git and GitHub?
 
 Git is a distributed version control system that tracks changes in your codebase by creating snapshots of your files at specific moments in time. Each snapshot represents a version of your project, allowing you to review history, revert changes, and collaborate with other developers without overwriting each other's work.
 
 GitHub is a cloud-based hosting platform for Git repositories that provides remote storage, collaboration tools, and a web interface for managing your projects. Think of Git as the version control engine running on your local machine, whilst GitHub serves as the centralised server where your team's code lives.
-
-This combination is fundamental to modern software development because it enables:
-
-- **Collaboration**: Multiple developers working on the same project simultaneously
-- **Version history**: Complete audit trail of who changed what and when
-- **Backup**: Remote storage protects against local machine failures
-- **Code review**: Pull requests facilitate peer review before merging changes
-- **Deployment integration**: Connect to CI/CD pipelines for automated testing and deployment
 
 ## How I used Git and GitHub in this project
 
