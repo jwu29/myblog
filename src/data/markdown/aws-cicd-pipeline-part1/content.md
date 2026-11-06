@@ -40,7 +40,7 @@ When launching the instance, I:
 2. Created a new key pair for secure access
 3. Configured the network settings to allow SSH traffic
 
-![Launching an EC2 instance](https://nextwork.ai/motivated_indigo_zealous_griffin/uploads/aws-devops-vscode_7852fbf3)
+![Launching an EC2 instance](./images/ec2-instance-launch)
 
 ### Enabling SSH
 
@@ -58,6 +58,8 @@ A key pair is like the key to your virtual computer. Just as you need a key to u
 - **Public key** - Stored by AWS and placed on the EC2 instance
 - **Private key** - Downloaded to your computer as a `.pem` file
 
+![SSH Keypair](./images/ssh-keypair.png)
+
 Once I created the key pair, AWS automatically downloaded the private key to my computer. AWS does not keep a copy, so if this file is lost, it cannot be recovered—it must be stored safely and never shared or committed to a repository.
 
 ---
@@ -70,21 +72,11 @@ Visual Studio Code (VS Code) is one of the most popular tools for creating and m
 
 I installed VS Code because its built-in terminal and extension ecosystem make it straightforward to connect to remote servers such as EC2 instances and edit files on them directly.
 
-![Set up VS Code](https://nextwork.ai/motivated_indigo_zealous_griffin/uploads/aws-devops-vscode_53d05e68)
-
-### My First Terminal Commands
-
-A terminal is where you send instructions to your computer using text instead of clicks. The first command I ran was:
+The first command I ran on the terminal was to navigate into the DevOps folder I have created.
 
 ```bash
 cd ~/Desktop/DevOps
 ```
-
-**Command breakdown:**
-
-- `cd` - Changes the current working directory
-- `~` - Shortcut for your home directory
-- `/Desktop/DevOps` - The folder where I stored my private key file
 
 ### Updating File Permissions
 
