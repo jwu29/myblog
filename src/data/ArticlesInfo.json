@@ -1,19 +1,6 @@
 {
   "articles": [
     {
-      "id": "aws-code-artifact",
-      "title": "Secure Packages with Code Artifact",
-      "channel": "Josiah Wu",
-      "channelId": "testing",
-      "topic": "Cloud Security",
-      "uploaded": "Jan 2026",
-      "duration": "10 min",
-      "description": "A hands-ob lab that involves setting up AWS CodeArtifact as a centralized, secure package repository for a Java application on EC2, covering domain/repository creation, IAM role-based authentication, Maven configuration, and dependency caching to improve build security and reliability.",
-      "thumbnailImage": "aws-code-artifact.png",
-      "markdownFolder": "aws-code-artifact",
-      "markdownFile": "content"
-    },
-    {
       "id": "active-directory-splunk",
       "title": "Small Office LAN Network Simulation with Active Directory (Part 1: Splunk Server)",
       "channel": "Josiah Wu",
@@ -64,19 +51,6 @@
       "markdownFolder": "aws-terraform-s3",
       "thumbnailImage": "aws-s3-terraform-thumbnail.png",
       "description": "A hands-on lab to building a secure AWS VPC architecture that connects an EC2 instance to Amazon S3, covering networking fundamentals, authentication methods (access keys vs IAM roles), and AWS CLI operations for cloud storage interaction.",
-      "thumbnailColor": "from-red-600 to-yellow-600"
-    },
-    {
-      "id": "aws-github",
-      "title": "Setting Up Git and GitHub on AWS EC2",
-      "channel": "Josiah Wu",
-      "channelId": "testing",
-      "topic": "Cloud Security",
-      "uploaded": "Dec 2025",
-      "duration": "10 min",
-      "markdownFolder": "aws-github",
-      "thumbnailImage": "aws-github-thumbnail.png",
-      "description": "A hands-on lab demonstrating how to set up Git on an AWS EC2 instance running Amazon Linux, connect it to a GitHub repository using Personal Access Tokens for authentication, and implement the fundamental version control workflow of staging, committing, and pushing code changes to a remote repository.",
       "thumbnailColor": "from-red-600 to-yellow-600"
     },
     {
@@ -247,11 +221,102 @@
       "thumbnailImage": "Security-Mac-217.png",
       "description": "A walkthrough of wiring Wazuh detection rules up to real email alerts on severe logs via a Postfix relay to prevent alert fatigue.",
       "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part1",
+      "title": "AWS CI/CD Pipeline (Part 1: Setup Web App in the Cloud)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part1",
+      "thumbnailImage": "aws-cicd-pipeline-part1-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part2",
+      "title": "AWS CI/CD Pipeline (Part 2: Connecting GitHub Repository with AWS)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part2",
+      "thumbnailImage": "aws-cicd-pipeline-part2-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part3",
+      "title": "AWS CI/CD Pipeline (Part 3: Secure Packages with CodeArtifact)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part3",
+      "thumbnailImage": "aws-cicd-pipeline-part3-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part4",
+      "title": "AWS CI/CD Pipeline (Part 4: Continuous Integration with CodeBuild)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part4",
+      "thumbnailImage": "aws-cicd-pipeline-part4-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part5",
+      "title": "AWS CI/CD Pipeline (Part 5: Initial Deployment with CodeDeploy)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part5",
+      "thumbnailImage": "aws-cicd-pipeline-part5-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
+    },
+    {
+      "id": "aws-cicd-pipeline-part6",
+      "title": "AWS CI/CD Pipeline (Part 6: Continuous Deployment with CodePipeline)",
+      "channel": "Josiah Wu",
+      "channelId": "testing",
+      "topic": "DevOps",
+      "uploaded": "Nov 2026",
+      "duration": "10 min",
+      "markdownFolder": "aws-cicd-pipeline-part6",
+      "thumbnailImage": "aws-cicd-pipeline-part6-thumbnail.png",
+      "description": "...",
+      "thumbnailColor": "from-red-600 to-yellow-600"
     }
   ],
   "playlists": [
     {
       "id": 1,
+      "name": "AWS CI/CD Pipeline Series",
+      "channelId": "testing",
+      "videos": [
+        "aws-cicd-pipeline-part1",
+        "aws-cicd-pipeline-part2",
+        "aws-cicd-pipeline-part3",
+        "aws-cicd-pipeline-part4",
+        "aws-cicd-pipeline-part5",
+        "aws-cicd-pipeline-part6"
+      ]
+    },
+    {
+      "id": 2,
       "name": "Home Lab Security Series (Season 2): Securing my Private Cloud",
       "channelId": "testing",
       "videos": [
@@ -262,7 +327,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Home Lab Series: Building a Private Cloud",
       "channelId": "testing",
       "videos": [
@@ -274,32 +339,27 @@
       ]
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Cloud Security",
       "channelId": "testing",
       "videos": [
         "aws-vpc-s3",
-        "aws-github",
         "aws-security-monitoring",
-        "multicloud-storage"
+        "multicloud-storage",
+        "aws-security-kms"
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "System Administration & Security",
       "channelId": "testing",
       "videos": ["active-directory-splunk", "active-directory-gpo"]
     },
     {
-      "id": 5,
-      "name": "Data Engineering & DevOps",
+      "id": 6,
+      "name": "DevOps",
       "channelId": "testing",
-      "videos": [
-        "aws-terraform-s3",
-        "aws-eks-kubernetes",
-        "aws-code-artifact",
-        "aws-security-kms"
-      ]
+      "videos": ["aws-terraform-s3", "aws-eks-kubernetes"]
     }
   ]
 }
